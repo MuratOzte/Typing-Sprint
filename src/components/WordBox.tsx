@@ -6,16 +6,20 @@ const WordBox = () => {
 
     useEffect(() => {
         const temp = [];
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= 100; i++) {
             temp.push(Words[Math.floor(Math.random() * Words.length)]);
         }
         setWords([...words, ...temp]);
     }, []);
 
     return (
-        <div className="flex flex-row border-b-2 border-gray-500 justify-center">
+        <div className="flex flex-row border-b-2 border-gray-500 justify-center flex-wrap">
             {words.map((word, index) => (
-                <div className="mx-4 text-center" key={index}>
+                <div
+                    className="mx-4 text-center"
+                    key={index}
+                    style={{ display: index < 5 ? 'block' : 'none' }}
+                >
                     {word}
                 </div>
             ))}
