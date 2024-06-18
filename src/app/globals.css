@@ -2,4 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-1{
+    background-color: #050C9C;
+}
+.bg-2{
+    background-color: #3572EF;
+}
+.bg-3{
+    background-color: #3ABEF9;
+}
+.bg-4{
+    background-color: #A7E6FF;
+}
 
