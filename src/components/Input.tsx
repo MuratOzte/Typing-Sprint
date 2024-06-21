@@ -1,5 +1,7 @@
-import { ChangeEvent, useState } from 'react';
-const Input = () => {
+import { InputProps } from '@/types/types';
+import { useState } from 'react';
+
+const Input: React.FC<InputProps> = ({ setTypedWord }) => {
     const [value, setValue] = useState('');
 
     const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -8,7 +10,7 @@ const Input = () => {
 
     const inputSubmitHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.code === 'Space' || e.key === 'Enter') {
-            console.log(value);
+            setTypedWord(value.trim());
             setValue('');
         }
     };

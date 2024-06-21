@@ -1,9 +1,9 @@
 import { Words } from '@/data/words';
+import { WordboxProps } from '@/types/types';
 import { useEffect, useState } from 'react';
 
-const WordBox = () => {
+const WordBox: React.FC<WordboxProps> = ({ setCurrentWord }) => {
     const [words, setWords] = useState<string[]>([]);
-    const [currentWord, setCurrentWord] = useState<string>('');
 
     useEffect(() => {
         const temp = [];
@@ -14,7 +14,6 @@ const WordBox = () => {
     }, []);
 
     useEffect(() => {
-        console.log(currentWord);
         setCurrentWord(words[0]);
     }, [words]);
 
