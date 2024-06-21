@@ -103,4 +103,11 @@ export const Words = [
     'toucan',
     'barbet',
     'hornbill',
+    'pencil',
+    'pen',
+    'marker',
+    'crayon',
+    'paintbrush',
+    'eraser',
+    'ruler',
 ];

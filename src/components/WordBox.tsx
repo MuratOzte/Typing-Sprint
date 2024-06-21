@@ -13,17 +13,28 @@ const WordBox = () => {
     }, []);
 
     return (
-        <div className="flex flex-row border-b-2 border-gray-500 justify-center flex-wrap">
-            {words.map((word, index) => (
-                <div
-                    className="mx-4 text-center"
-                    key={index}
-                    style={{ display: index < 5 ? 'block' : 'none' }}
-                >
-                    {word}
-                </div>
-            ))}
-        </div>
+        <>
+            <div className="flex flex-row border-b-2 border-gray-500 justify-center flex-wrap">
+                {words.map((word, index) => (
+                    <div
+                        className="mx-4 text-center"
+                        key={index}
+                        style={{ display: index < 5 ? 'block' : 'none' }}
+                    >
+                        {word}
+                    </div>
+                ))}
+            </div>
+            <button
+                onClick={() => {
+                    const newWords = [...words];
+                    newWords.shift();
+                    setWords(newWords);
+                }}
+            >
+                Deneme
+            </button>
+        </>
     );
 };
 
