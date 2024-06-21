@@ -2,7 +2,7 @@ import { Words } from '@/data/words';
 import { WordboxProps } from '@/types/types';
 import { useEffect, useState } from 'react';
 
-const WordBox: React.FC<WordboxProps> = ({ setCurrentWord }) => {
+const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
     const [words, setWords] = useState<string[]>([]);
 
     useEffect(() => {
@@ -12,6 +12,12 @@ const WordBox: React.FC<WordboxProps> = ({ setCurrentWord }) => {
         }
         setWords([...words, ...temp]);
     }, []);
+
+    useEffect(() => {
+        if (typedWord === '' || words.length === 0) return;
+        setCurrentWord(words[0]);
+        setWords(words.slice(1));
+    }, [typedWord]);
 
     useEffect(() => {
         setCurrentWord(words[0]);
@@ -34,15 +40,6 @@ const WordBox: React.FC<WordboxProps> = ({ setCurrentWord }) => {
                     </div>
                 ))}
             </div>
-            <button
-                onClick={() => {
-                    const newWords = [...words];
-                    newWords.shift();
-                    setWords(newWords);
-                }}
-            >
-                Deneme
-            </button>
         </>
     );
 };
