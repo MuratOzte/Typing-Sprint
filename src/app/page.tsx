@@ -20,7 +20,7 @@ export default function Home() {
     }, [typedWord]);
 
     return (
-        <div className="flex flex-col space-y-10 justify-center items-center bg-slate-300 h-screen w-5/12">
+        <div className="flex flex-col space-y-10 justify-center items-center bg-slate-300 h-screen w-7/12">
             <WordBox setCurrentWord={setCurrentWord} typedWord={typedWord} />
             <Input setTypedWord={setTypedWord} />
             <Counter trueCount={trueCount} falseCount={falseCount} />

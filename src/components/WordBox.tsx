@@ -15,11 +15,15 @@ const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
 
     useEffect(() => {
         if (typedWord === '' || words.length === 0) return;
+
         setCurrentWord(words[0]);
         setWords(words.slice(1));
     }, [typedWord]);
 
     useEffect(() => {
+        if (words[0] === words[1] && typedWord !== '') {
+            setWords(words.slice(1));
+        }
         setCurrentWord(words[0]);
     }, [words]);
 
