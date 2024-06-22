@@ -29,7 +29,7 @@ const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
 
     return (
         <>
-            <div className="flex flex-row border-2 px-5 py-2 rounded-xl shadow-xl border-gray-200 justify-center flex-wrap">
+            <div className="flex flex-row border-2 px-5 py-2 rounded-xl shadow-xl border-gray-200 justify-center flex-wrap select-none">
                 {words.length == 0 && <p>Loading...</p>}
                 {words.map((word, index) => (
                     <div
