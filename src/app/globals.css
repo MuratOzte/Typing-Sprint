@@ -2,16 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-1{
-    background-color: #050C9C;
+.bg-1 {
+    background-color: #050c9c;
 }
-.bg-2{
-    background-color: #3572EF;
+.bg-2 {
+    background-color: #3572ef;
 }
-.bg-3{
-    background-color: #3ABEF9;
+.bg-3 {
+    background-color: #3abef9;
 }
-.bg-4{
-    background-color: #A7E6FF;
+.bg-4 {
+    background-color: #a7e6ff;
 }
 
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

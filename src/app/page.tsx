@@ -1,8 +1,8 @@
 'use client';
+import Counter from '@/components/Counter';
 import Input from '@/components/Input';
 import WordBox from '@/components/WordBox';
-import { Words } from '@/data/words';
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
     const [currentWord, setCurrentWord] = useState<string>('');
@@ -19,14 +19,11 @@ export default function Home() {
         }
     }, [typedWord]);
 
-    useEffect(() => {
-        console.log('True Count', trueCount, 'False Count', falseCount);
-    }, [trueCount, falseCount]);
-
     return (
-        <>
+        <div className="flex flex-col space-y-10 justify-center items-center bg-slate-300 h-screen w-5/12">
             <WordBox setCurrentWord={setCurrentWord} typedWord={typedWord} />
             <Input setTypedWord={setTypedWord} />
-        </>
+            <Counter trueCount={trueCount} falseCount={falseCount} />
+        </div>
     );
 }

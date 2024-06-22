@@ -6,3 +6,8 @@ export interface WordboxProps {
 export interface InputProps {
     setTypedWord: (word: string) => void;
 }
+
+export interface CounterProps {
+    trueCount: number;
+    falseCount: number;
+}
