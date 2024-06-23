@@ -20,10 +20,17 @@ export default function Home() {
     }, [typedWord]);
 
     return (
-        <div className="flex flex-col space-y-10 justify-center items-center bg-slate-300 h-screen w-7/12">
-            <WordBox setCurrentWord={setCurrentWord} typedWord={typedWord} />
-            <Input setTypedWord={setTypedWord} />
-            <Counter trueCount={trueCount} falseCount={falseCount} />
+        <div className="w-full flex">
+            <div className="w-3/12 bg-red-500"></div>
+            <div className="flex flex-col space-y-10 justify-center items-center bg-slate-300 h-screen w-6/12">
+                <WordBox
+                    setCurrentWord={setCurrentWord}
+                    typedWord={typedWord}
+                />
+                <Input setTypedWord={setTypedWord} />
+                <Counter trueCount={trueCount} falseCount={falseCount} />
+            </div>
+            <div className="w-3/12 bg-red-500"></div>
         </div>
     );
 }

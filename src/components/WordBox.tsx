@@ -1,11 +1,12 @@
 import { Words } from '@/data/words';
 import { WordboxProps } from '@/types/types';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import Loading from './common/Loading';
 
 const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
     const [words, setWords] = useState<string[]>([]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const temp = [];
         for (let i = 1; i <= 110; i++) {
             temp.push(Words[Math.floor(Math.random() * Words.length)]);
@@ -30,14 +31,14 @@ const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
     return (
         <>
             <div className="flex flex-row border-2 px-5 py-2 rounded-xl shadow-xl border-gray-200 justify-center flex-wrap select-none">
-                {words.length == 0 && <p>Loading...</p>}
+                {words.length == 0 && <Loading />}
                 {words.map((word, index) => (
                     <div
-                        className="mx-4 text-center"
+                        className="mx-4 text-center px-2 rounded-md py-1"
                         key={index}
                         style={{
                             display: index < 5 ? 'block' : 'none',
-                            backgroundColor: index == 0 ? 'red' : 'white',
+                            backgroundColor: index == 0 ? 'red' : 'transparent',
                         }}
                     >
                         {word}
