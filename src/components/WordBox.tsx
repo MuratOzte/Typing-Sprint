@@ -3,6 +3,7 @@ import { WordboxProps } from '@/types/types';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import Loading from './common/Loading';
 
+/**/
 const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
     const [words, setWords] = useState<string[]>([]);
 
