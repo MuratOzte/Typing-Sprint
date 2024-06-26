@@ -1,6 +1,7 @@
 'use client';
 import Counter from '@/components/Counter';
 import Input from '@/components/Input';
+import Nav from '@/components/Nav';
 import WordBox from '@/components/WordBox';
 import { useEffect, useState } from 'react';
 
@@ -22,7 +23,8 @@ export default function Home() {
     return (
         <div className="w-full flex">
             <div className="w-3/12 bg-red-500"></div>
-            <div className="flex flex-col space-y-10 justify-center items-center bg-slate-300 h-screen w-6/12">
+            <div className="flex flex-col space-y-10 justify-center items-center bg-slate-300 h-screen w-6/12 relative">
+                <Nav />
                 <WordBox
                     setCurrentWord={setCurrentWord}
                     typedWord={typedWord}

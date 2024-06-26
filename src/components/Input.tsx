@@ -5,7 +5,7 @@ const Input: React.FC<InputProps> = ({ setTypedWord }) => {
     const [value, setValue] = useState('');
 
     const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(event.currentTarget.value);
+        setValue(event.currentTarget.value.toLocaleLowerCase());
     };
 
     const inputSubmitHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -20,8 +20,10 @@ const Input: React.FC<InputProps> = ({ setTypedWord }) => {
             type="text"
             value={value}
             onChange={inputChangeHandler}
-            className="bg-gray-500 p-3 rounded-md"
             onKeyDown={inputSubmitHandler}
+            autoFocus
+            autoComplete="off"
+            className="px-5 py-3 rounded-lg focus:outline-none w-1/3 focus:ring-2 focus:ring-gray-400 shadow-lg"
         />
     );
 };
