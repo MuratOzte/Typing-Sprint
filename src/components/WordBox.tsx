@@ -16,6 +16,7 @@ const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
 
     useEffect(() => {
         if (typedWord === '' || words.length === 0) return;
+        if (typedWord === words[1]) return;
 
         setCurrentWord(words[0]);
         setWords(words.slice(1));
