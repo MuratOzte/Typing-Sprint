@@ -16,7 +16,6 @@ export default function Home() {
     const [isTyped, setIsTyped] = useState(false);
 
     useEffect(() => {
-        if (typedWord.length > 0) setIsTyped(true);
         if (typedWord === currentWord && typedWord !== '') {
             setTrueCount(trueCount + 1);
         } else if (typedWord !== currentWord && typedWord !== '') {
@@ -25,6 +24,7 @@ export default function Home() {
     }, [typedWord]);
 
     useEffect(() => {
+        if (word.length > 0) setIsTyped(true);
         let color = '';
         for (let i = 0; i < word.length; i++) {
             if (word.length < 1) return;
