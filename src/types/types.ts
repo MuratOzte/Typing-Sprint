@@ -5,6 +5,8 @@ export interface WordboxProps {
 
 export interface InputProps {
     setTypedWord: (word: string) => void;
+    setWord: (word: string) => void;
+    color: string;
 }
 
 export interface CounterProps {

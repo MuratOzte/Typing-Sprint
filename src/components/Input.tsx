@@ -1,11 +1,12 @@
 import { InputProps } from '@/types/types';
 import { useState } from 'react';
 
-const Input: React.FC<InputProps> = ({ setTypedWord }) => {
+const Input: React.FC<InputProps> = ({ setTypedWord, setWord, color }) => {
     const [value, setValue] = useState('');
 
     const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.currentTarget.value.toLocaleLowerCase());
+        setWord(event.currentTarget.value.toLocaleLowerCase().trim());
     };
 
     const inputSubmitHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -23,6 +24,7 @@ const Input: React.FC<InputProps> = ({ setTypedWord }) => {
             onKeyDown={inputSubmitHandler}
             autoFocus
             autoComplete="off"
+            style={{ backgroundColor: color }}
             className="px-5 py-3 rounded-lg focus:outline-none w-1/3 focus:ring-2 focus:ring-gray-400 shadow-lg"
         />
     );

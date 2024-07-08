@@ -7,6 +7,8 @@ import WordBox from '@/components/WordBox';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
+    const [word, setWord] = useState('');
+    const [inputColor, setInputColor] = useState('');
     const [currentWord, setCurrentWord] = useState<string>('');
     const [typedWord, setTypedWord] = useState('');
     const [trueCount, setTrueCount] = useState(0);
@@ -22,6 +24,21 @@ export default function Home() {
         }
     }, [typedWord]);
 
+    useEffect(() => {
+        let color = '';
+        for (let i = 0; i < word.length; i++) {
+            if (word.length < 1) return;
+            if (word[i] !== currentWord[i]) {
+                color = 'red';
+            }
+        }
+        setInputColor(color);
+    }, [word, currentWord]);
+
+    useEffect(() => {
+        setInputColor('');
+    }, [currentWord]);
+
     return (
         <div className="w-full flex">
             <div className="w-3/12 bg-red-500"></div>
@@ -32,7 +49,11 @@ export default function Home() {
                     setCurrentWord={setCurrentWord}
                     typedWord={typedWord}
                 />
-                <Input setTypedWord={setTypedWord} />
+                <Input
+                    setTypedWord={setTypedWord}
+                    setWord={setWord}
+                    color={inputColor}
+                />
                 <Counter trueCount={trueCount} falseCount={falseCount} />
             </div>
             <div className="w-3/12 bg-red-500"></div>
