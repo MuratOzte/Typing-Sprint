@@ -2,18 +2,56 @@ import { SiTicktick } from 'react-icons/si';
 import { IoAlertCircle } from 'react-icons/io5';
 import { CounterProps } from '@/types/types';
 
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
 const Counter: React.FC<CounterProps> = ({ trueCount, falseCount }) => {
+    const [trueEffect, setTrueEffect] = useState(false);
+    const [falseEffect, setFalseEffect] = useState(false);
+
+    useEffect(() => {
+        if (trueCount > 0) {
+            setTrueEffect(true);
+            setTimeout(() => {
+                setTrueEffect(false);
+            }, 200);
+        }
+    }, [trueCount]);
+
+    useEffect(() => {
+        if (falseCount > 0) {
+            setFalseEffect(true);
+            setTimeout(() => {
+                setFalseEffect(false);
+            }, 200);
+        }
+    }, [falseCount]);
+
+    useEffect(() => {
+        console.log('trueCount:', trueCount, 'falseCount:', falseCount);
+    }, [trueCount, falseCount]);
+
     return (
         <div className=" py-2 px-3 bg-slate-200 rounded-md flex gap-5">
-            <div className="flex justify-center items-center gap-1">
+            <motion.div
+                initial={{ scale: 1 }}
+                animate={{ scale: trueEffect ? 1.2 : 1 }}
+                transition={{ duration: 0.2 }}
+                className="flex justify-center items-center gap-1"
+            >
                 <SiTicktick className="text-green-500" size={24} />
                 <span className="text-lg">{trueCount}</span>
-            </div>
+            </motion.div>
             <div className="bg-gray-400 w-[1px]" />
-            <div className="flex justify-center items-center gap-1">
+            <motion.div
+                initial={{ scale: 1 }}
+                animate={{ scale: falseEffect ? 1.2 : 1 }}
+                transition={{ duration: 0.2 }}
+                className="flex justify-center items-center gap-1"
+            >
                 <IoAlertCircle className="text-red-500" size={24} />
                 <span className="text-lg">{falseCount}</span>
-            </div>
+            </motion.div>
         </div>
     );
 };
