@@ -39,7 +39,7 @@ const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
                         key={index}
                         style={{
                             display: index < 5 ? 'block' : 'none',
-                            backgroundColor: index == 0 ? 'red' : 'transparent',
+                            backgroundColor: index == 0 ? 'Highlight' : 'transparent',
                         }}
                     >
                         {word}

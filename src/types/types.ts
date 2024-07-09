@@ -15,3 +15,8 @@ export interface CounterProps {
     trueCount: number;
     falseCount: number;
 }
+
+export interface TooltipProps {
+    text: string;
+    children: React.ReactNode;
+}
