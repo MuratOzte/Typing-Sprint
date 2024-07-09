@@ -50,6 +50,8 @@ export default function Home() {
                     typedWord={typedWord}
                 />
                 <Input
+                    trueCount={trueCount}
+                    falseCount={falseCount}
                     setTypedWord={setTypedWord}
                     setWord={setWord}
                     color={inputColor}

@@ -7,6 +7,8 @@ export interface InputProps {
     setTypedWord: (word: string) => void;
     setWord: (word: string) => void;
     color: string;
+    trueCount: number;
+    falseCount: number;
 }
 
 export interface CounterProps {

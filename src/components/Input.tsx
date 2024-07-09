@@ -1,8 +1,16 @@
 import { InputProps } from '@/types/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const Input: React.FC<InputProps> = ({ setTypedWord, setWord, color }) => {
+const Input: React.FC<InputProps> = ({
+    setTypedWord,
+    setWord,
+    color,
+    trueCount,
+    falseCount,
+}) => {
     const [value, setValue] = useState('');
+    const [isTrueEffect, setIsTrueEffect] = useState(false);
+    const [isFalseEffect, setIsFalseEffect] = useState(false);
 
     const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.currentTarget.value.toLocaleLowerCase());
@@ -16,6 +24,24 @@ const Input: React.FC<InputProps> = ({ setTypedWord, setWord, color }) => {
         }
     };
 
+    useEffect(() => {
+        if (trueCount > 0) {
+            setIsTrueEffect(true);
+            setTimeout(() => {
+                setIsTrueEffect(false);
+            }, 300);
+        }
+    }, [trueCount]);
+
+    useEffect(() => {
+        if (falseCount > 0) {
+            setIsFalseEffect(true);
+            setTimeout(() => {
+                setIsFalseEffect(false);
+            }, 300);
+        }
+    }, [falseCount]);
+
     return (
         <input
             type="text"
@@ -24,8 +50,10 @@ const Input: React.FC<InputProps> = ({ setTypedWord, setWord, color }) => {
             onKeyDown={inputSubmitHandler}
             autoFocus
             autoComplete="off"
-            style={{ backgroundColor: color }}
-            className="px-5 py-3 rounded-lg focus:outline-none w-1/3 focus:ring-2 focus:ring-gray-400 shadow-lg"
+            style={{ backgroundColor: color , border:'border 2 solid #d1d5db' }}
+            className={`my-2 px-5 py-3 rounded-lg focus:outline-none w-1/3 focus:ring-2 focus:ring-gray-400 transition-all duration-150 border-2 ${
+                isTrueEffect ? 'border-green-500' : ''
+            } ${isFalseEffect ? 'border-red-500' : ''}`}
         />
     );
 };
