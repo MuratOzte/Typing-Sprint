@@ -27,10 +27,6 @@ const Counter: React.FC<CounterProps> = ({ trueCount, falseCount }) => {
         }
     }, [falseCount]);
 
-    useEffect(() => {
-        console.log('trueCount:', trueCount, 'falseCount:', falseCount);
-    }, [trueCount, falseCount]);
-
     return (
         <div className=" py-2 px-3 bg-slate-200 rounded-md flex gap-5">
             <motion.div
