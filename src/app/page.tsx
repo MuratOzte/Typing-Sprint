@@ -2,7 +2,8 @@
 import Counter from '@/components/Counter';
 import Input from '@/components/Input';
 import Nav from '@/components/Nav';
-import Timer from '@/components/Timer';
+import Timer from '@/components/timer/Timer';
+import TimerModal from '@/components/timer/TimerModal';
 import WordBox from '@/components/WordBox';
 import { useEffect, useState } from 'react';
 
@@ -14,6 +15,7 @@ export default function Home() {
     const [trueCount, setTrueCount] = useState(0);
     const [falseCount, setFalseCount] = useState(0);
     const [isTyped, setIsTyped] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         if (typedWord === currentWord && typedWord !== '') {
@@ -39,12 +41,21 @@ export default function Home() {
         setInputColor('');
     }, [currentWord]);
 
+    const modalToggleHandler = () => {
+        setIsModalOpen((prev) => !prev);
+    };
+
     return (
         <div className="w-full flex">
             <div className="w-3/12 bg-red-500"></div>
-            <div className="flex flex-col space-y-10 justify-center items-center bg-slate-300 h-screen w-6/12 relative">
+            <div className="flex flex-col gap-10 justify-center items-center bg-slate-300 h-screen w-6/12 relative">
                 <Nav />
-                <Timer time={60} isTyped={isTyped} />
+                <TimerModal />
+                <Timer
+                    time={60}
+                    isTyped={isTyped}
+                    modalToggleHandler={modalToggleHandler}
+                />
                 <WordBox
                     setCurrentWord={setCurrentWord}
                     typedWord={typedWord}

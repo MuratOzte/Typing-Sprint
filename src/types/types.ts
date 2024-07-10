@@ -20,3 +20,9 @@ export interface TooltipProps {
     text: string;
     children: React.ReactNode;
 }
+
+export interface TimerProps {
+    time?: number;
+    isTyped?: boolean;
+    modalToggleHandler: () => void;
+}
