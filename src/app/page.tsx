@@ -5,6 +5,7 @@ import Nav from '@/components/Nav';
 import Timer from '@/components/timer/Timer';
 import TimerModal from '@/components/timer/TimerModal';
 import WordBox from '@/components/WordBox';
+import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -50,7 +51,9 @@ export default function Home() {
             <div className="w-3/12 bg-red-500"></div>
             <div className="flex flex-col gap-10 justify-center items-center bg-slate-300 h-screen w-6/12 relative">
                 <Nav />
-                <TimerModal />
+                <AnimatePresence>
+                    {isModalOpen && <TimerModal />}
+                </AnimatePresence>
                 <Timer
                     time={60}
                     isTyped={isTyped}

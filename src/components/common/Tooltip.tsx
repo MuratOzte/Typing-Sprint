@@ -5,15 +5,19 @@ import { AnimatePresence, motion } from 'framer-motion';
 const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
     const [showTooltip, setShowTooltip] = useState(false);
 
-    const toggleTooltip = () => {
-        setShowTooltip((prev) => !prev);
+    const setTrue = () => {
+        setShowTooltip((prev) => true);
+    };
+
+    const setFalse = () => {
+        setShowTooltip((prev) => false);
     };
 
     return (
         <div
             className="relative"
-            onMouseEnter={toggleTooltip}
-            onMouseLeave={toggleTooltip}
+            onMouseEnter={setFalse}
+            onMouseLeave={setTrue}
         >
             <AnimatePresence mode="wait">
                 {showTooltip && (
