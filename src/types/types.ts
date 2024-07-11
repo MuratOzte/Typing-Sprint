@@ -26,3 +26,17 @@ export interface TimerProps {
     isTyped?: boolean;
     modalToggleHandler: () => void;
 }
+
+export interface TimesProps {
+    minutes: number;
+    seconds: number;
+    setSelectedSecond: (second: number) => void;
+}
+
+export interface TimerModalProps {
+    setTime: (time: number) => void;
+}
+
+export interface TimePickerProps {
+    setTime: (time: number) => void;
+}

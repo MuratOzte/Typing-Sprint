@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import TimePicker from './TimePicker';
+import { TimerModalProps } from '@/types/types';
 
-const TimerModal = () => {
+const TimerModal: React.FC<TimerModalProps> = ({ setTime }) => {
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -10,7 +11,7 @@ const TimerModal = () => {
             transition={{ duration: 0.2 }}
             className="z-50 w-9/12 h-40 bg-slate-400 absolute rounded-lg shadow-xl"
         >
-            <TimePicker />
+            <TimePicker setTime={setTime} />
         </motion.div>
     );
 };

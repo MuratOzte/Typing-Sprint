@@ -17,6 +17,11 @@ export default function Home() {
     const [falseCount, setFalseCount] = useState(0);
     const [isTyped, setIsTyped] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [time, setTime] = useState(60);
+
+    useEffect(() => {
+        console.log('burasi' + time);
+    }, [time]);
 
     useEffect(() => {
         if (typedWord === currentWord && typedWord !== '') {
@@ -52,10 +57,10 @@ export default function Home() {
             <div className="flex flex-col gap-10 justify-center items-center bg-slate-300 h-screen w-6/12 relative">
                 <Nav />
                 <AnimatePresence>
-                    {isModalOpen && <TimerModal />}
+                    {isModalOpen && <TimerModal setTime={setTime} />}
                 </AnimatePresence>
                 <Timer
-                    time={60}
+                    time={time}
                     isTyped={isTyped}
                     modalToggleHandler={modalToggleHandler}
                 />
