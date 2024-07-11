@@ -20,10 +20,6 @@ export default function Home() {
     const [time, setTime] = useState(60);
 
     useEffect(() => {
-        console.log('burasi' + time);
-    }, [time]);
-
-    useEffect(() => {
         if (typedWord === currentWord && typedWord !== '') {
             setTrueCount(trueCount + 1);
         } else if (typedWord !== currentWord && typedWord !== '') {

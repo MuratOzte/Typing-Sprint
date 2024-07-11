@@ -1,23 +1,23 @@
 import { TooltipProps } from '@/types/types';
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
     const [showTooltip, setShowTooltip] = useState(false);
 
-    const setTrue = () => {
-        setShowTooltip((prev) => true);
-    };
+    const show = useCallback(() => {
+        setShowTooltip(true);
+    }, []);
 
-    const setFalse = () => {
-        setShowTooltip((prev) => false);
-    };
+    const hide = useCallback(() => {
+        setShowTooltip(false);
+    }, []);
 
     return (
         <div
             className="relative"
-            onMouseEnter={setFalse}
-            onMouseLeave={setTrue}
+            onMouseEnter={show}
+            onMouseLeave={hide}
         >
             <AnimatePresence mode="wait">
                 {showTooltip && (

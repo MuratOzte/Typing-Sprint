@@ -8,7 +8,6 @@ const Timer = ({
     isTyped = false,
     modalToggleHandler,
 }: TimerProps) => {
-    console.log(time);
     const [second, setSecond] = useState(time);
     const [fixedSecond, setFixedSecond] = useState('1:00');
 
@@ -29,7 +28,6 @@ const Timer = ({
     };
 
     useEffect(() => {
-        console.log(time)
         setFixedSecond(formatTime(time));
     }, [time]);
 

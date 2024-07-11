@@ -31,6 +31,7 @@ export interface TimesProps {
     minutes: number;
     seconds: number;
     setSelectedSecond: (second: number) => void;
+    isSelected: boolean;
 }
 
 export interface TimerModalProps {
