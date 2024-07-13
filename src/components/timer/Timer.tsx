@@ -12,6 +12,14 @@ const Timer = ({
     const [fixedSecond, setFixedSecond] = useState('1:00');
 
     useEffect(() => {
+        setSecond(time);
+    }, [time]);
+
+    useEffect(() => {
+        setFixedSecond(formatTime(second));
+    }, [second]);
+
+    useEffect(() => {
         if (second > 0 && isTyped) {
             const timerId = setInterval(() => {
                 setSecond((prevSecond) => prevSecond - 1);
@@ -19,7 +27,7 @@ const Timer = ({
 
             return () => clearInterval(timerId);
         }
-    }, [second, isTyped, time]);
+    }, [isTyped, second]);
 
     const formatTime = (totalSeconds: number) => {
         const minutes = Math.floor(totalSeconds / 60);
@@ -27,16 +35,21 @@ const Timer = ({
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
 
-    useEffect(() => {
-        setFixedSecond(formatTime(time));
-    }, [time]);
-
     return (
         <div className="bg-slate-100 pl-5 pr-3 py-2 rounded-lg shadow-lg text-xl font-mono flex items-center gap-4">
             {fixedSecond}
-            <div onClick={modalToggleHandler}>
-                <Tooltip text="Edit Timer">
-                    <MdOutlineEdit className="cursor-pointer hover:scale-110 transition-all duration-200" />
+            <div
+                onClick={() => {
+                    if (!isTyped) {
+                        modalToggleHandler();
+                    }
+                }}
+            >
+                <Tooltip text={isTyped ? 'Disabled' : 'Select Time'}>
+                    <MdOutlineEdit
+                        className="cursor-pointer hover:scale-110 transition-all duration-200"
+                        color={isTyped ? 'gray' : ''}
+                    />
                 </Tooltip>
             </div>
         </div>

@@ -36,6 +36,7 @@ export interface TimesProps {
 
 export interface TimerModalProps {
     setTime: (time: number) => void;
+    modalToggleHandler: () => void;
 }
 
 export interface TimePickerProps {

@@ -53,7 +53,12 @@ export default function Home() {
             <div className="flex flex-col gap-10 justify-center items-center bg-slate-300 h-screen w-6/12 relative">
                 <Nav />
                 <AnimatePresence>
-                    {isModalOpen && <TimerModal setTime={setTime} />}
+                    {isModalOpen && (
+                        <TimerModal
+                            setTime={setTime}
+                            modalToggleHandler={modalToggleHandler}
+                        />
+                    )}
                 </AnimatePresence>
                 <Timer
                     time={time}
