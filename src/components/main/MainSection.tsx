@@ -33,6 +33,7 @@ const MainSection: React.FC<MainSectionProps> = ({
                 )}
             </AnimatePresence>
             <Timer
+                isModalOpen={isModalOpen}
                 time={time}
                 isTyped={isTyped}
                 modalToggleHandler={modalToggleHandler}

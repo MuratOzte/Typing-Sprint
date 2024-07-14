@@ -25,6 +25,7 @@ export interface TimerProps {
     time?: number;
     isTyped?: boolean;
     modalToggleHandler: () => void;
+    isModalOpen: boolean;
 }
 
 export interface TimesProps {
