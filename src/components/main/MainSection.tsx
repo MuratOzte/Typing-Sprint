@@ -22,31 +22,36 @@ const MainSection: React.FC<MainSectionProps> = ({
     setWord,
 }) => {
     return (
-        <div className="flex flex-col gap-10 justify-center items-center bg-slate-300 h-screen w-6/12 relative">
+        <div className='w-6/12 h-screen overflow-hidden' >
             <Nav />
-            <AnimatePresence>
-                {isModalOpen && (
-                    <TimerModal
-                        setTime={setTime}
-                        modalToggleHandler={modalToggleHandler}
-                    />
-                )}
-            </AnimatePresence>
-            <Timer
-                isModalOpen={isModalOpen}
-                time={time}
-                isTyped={isTyped}
-                modalToggleHandler={modalToggleHandler}
-            />
-            <WordBox setCurrentWord={setCurrentWord} typedWord={typedWord} />
-            <Input
-                trueCount={trueCount}
-                falseCount={falseCount}
-                setTypedWord={setTypedWord}
-                setWord={setWord}
-                color={inputColor}
-            />
-            <Counter trueCount={trueCount} falseCount={falseCount} />
+            <div className="flex flex-col gap-10 pt-24 items-center bg-slate-300 h-screen w-full relative">
+                <AnimatePresence>
+                    {isModalOpen && (
+                        <TimerModal
+                            setTime={setTime}
+                            modalToggleHandler={modalToggleHandler}
+                        />
+                    )}
+                </AnimatePresence>
+                <Timer
+                    isModalOpen={isModalOpen}
+                    time={time}
+                    isTyped={isTyped}
+                    modalToggleHandler={modalToggleHandler}
+                />
+                <WordBox
+                    setCurrentWord={setCurrentWord}
+                    typedWord={typedWord}
+                />
+                <Input
+                    trueCount={trueCount}
+                    falseCount={falseCount}
+                    setTypedWord={setTypedWord}
+                    setWord={setWord}
+                    color={inputColor}
+                />
+                <Counter trueCount={trueCount} falseCount={falseCount} />
+            </div>
         </div>
     );
 };

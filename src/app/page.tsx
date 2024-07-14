@@ -1,5 +1,6 @@
 'use client';
 import MainSection from '@/components/main/MainSection';
+import ResultBox from '@/components/result/ResultBox';
 import useCount from '@/hooks/useCount';
 import useInputColor from '@/hooks/useInputColor';
 import { useEffect, useState } from 'react';
@@ -10,6 +11,7 @@ export default function Home() {
     const [typedWord, setTypedWord] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [time, setTime] = useState(60);
+    const [isFinished, setIsFinished] = useState(true);
 
     const { trueCount, falseCount } = useCount(typedWord, currentWord);
     const { isTyped, inputColor } = useInputColor(word, currentWord);
@@ -21,20 +23,24 @@ export default function Home() {
     return (
         <div className="w-full flex">
             <div className="w-3/12 bg-red-500"></div>
-            <MainSection
-                falseCount={falseCount}
-                inputColor={inputColor}
-                isModalOpen={isModalOpen}
-                isTyped={isTyped}
-                modalToggleHandler={modalToggleHandler}
-                setCurrentWord={setCurrentWord}
-                setTime={setTime}
-                time={time}
-                trueCount={trueCount}
-                typedWord={typedWord}
-                setTypedWord={setTypedWord}
-                setWord={setWord}
-            />
+            {isFinished ? (
+                <MainSection
+                    falseCount={falseCount}
+                    inputColor={inputColor}
+                    isModalOpen={isModalOpen}
+                    isTyped={isTyped}
+                    modalToggleHandler={modalToggleHandler}
+                    setCurrentWord={setCurrentWord}
+                    setTime={setTime}
+                    time={time}
+                    trueCount={trueCount}
+                    typedWord={typedWord}
+                    setTypedWord={setTypedWord}
+                    setWord={setWord}
+                />
+            ) : (
+                <ResultBox />
+            )}
             <div className="w-3/12 bg-red-500"></div>
         </div>
     );

@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
 import { MdOutlineEdit } from 'react-icons/md';
-import Tooltip from '../common/Tooltip';
 import { TimerProps } from '@/types/types';
 
 const Timer = ({
@@ -19,7 +18,6 @@ const Timer = ({
     useEffect(() => {
         setFixedSecond(formatTime(second));
     }, [second]);
-
 
     useEffect(() => {
         if (second > 0 && isTyped) {
@@ -47,12 +45,10 @@ const Timer = ({
                     }
                 }}
             >
-                <Tooltip text={isTyped ? 'Disabled' : 'Select Time'}>
-                    <MdOutlineEdit
-                        className="cursor-pointer hover:scale-110 transition-all duration-200"
-                        color={isTyped ? 'gray' : ''}
-                    />
-                </Tooltip>
+                <MdOutlineEdit
+                    className="cursor-pointer hover:scale-110 transition-all duration-200"
+                    color={isTyped ? 'gray' : ''}
+                />
             </div>
         </div>
     );
