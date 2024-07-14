@@ -42,3 +42,18 @@ export interface TimerModalProps {
 export interface TimePickerProps {
     setTime: (time: number) => void;
 }
+
+export interface MainSectionProps {
+    isModalOpen: boolean;
+    setTime: (time: number) => void;
+    time: number;
+    isTyped: boolean;
+    modalToggleHandler: () => void;
+    setCurrentWord: (word: string) => void;
+    setTypedWord: (word: string) => void;
+    setWord: (word: string) => void;
+    typedWord: string;
+    trueCount: number;
+    falseCount: number;
+    inputColor: string;
+}

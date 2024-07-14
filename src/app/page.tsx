@@ -7,6 +7,7 @@ import TimerModal from '@/components/timer/TimerModal';
 import WordBox from '@/components/main/WordBox';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import MainSection from '@/components/main/MainSection';
 
 export default function Home() {
     const [word, setWord] = useState('');
@@ -50,34 +51,20 @@ export default function Home() {
     return (
         <div className="w-full flex">
             <div className="w-3/12 bg-red-500"></div>
-            <div className="flex flex-col gap-10 justify-center items-center bg-slate-300 h-screen w-6/12 relative">
-                <Nav />
-                <AnimatePresence>
-                    {isModalOpen && (
-                        <TimerModal
-                            setTime={setTime}
-                            modalToggleHandler={modalToggleHandler}
-                        />
-                    )}
-                </AnimatePresence>
-                <Timer
-                    time={time}
-                    isTyped={isTyped}
-                    modalToggleHandler={modalToggleHandler}
-                />
-                <WordBox
-                    setCurrentWord={setCurrentWord}
-                    typedWord={typedWord}
-                />
-                <Input
-                    trueCount={trueCount}
-                    falseCount={falseCount}
-                    setTypedWord={setTypedWord}
-                    setWord={setWord}
-                    color={inputColor}
-                />
-                <Counter trueCount={trueCount} falseCount={falseCount} />
-            </div>
+            <MainSection
+                falseCount={falseCount}
+                inputColor={inputColor}
+                isModalOpen={isModalOpen}
+                isTyped={isTyped}
+                modalToggleHandler={modalToggleHandler}
+                setCurrentWord={setCurrentWord}
+                setTime={setTime}
+                time={time}
+                trueCount={trueCount}
+                typedWord={typedWord}
+                setTypedWord={setTypedWord}
+                setWord={setWord}
+            />
             <div className="w-3/12 bg-red-500"></div>
         </div>
     );
