@@ -1,10 +1,10 @@
 'use client';
-import Counter from '@/components/Counter';
-import Input from '@/components/Input';
-import Nav from '@/components/Nav';
+import Counter from '@/components/main/Counter';
+import Input from '@/components/main/Input';
+import Nav from '@/components/main/Nav';
 import Timer from '@/components/timer/Timer';
 import TimerModal from '@/components/timer/TimerModal';
-import WordBox from '@/components/WordBox';
+import WordBox from '@/components/main/WordBox';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
