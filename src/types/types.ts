@@ -57,3 +57,8 @@ export interface MainSectionProps {
     falseCount: number;
     inputColor: string;
 }
+
+export interface useInputColorProps {
+    typedWord: string;
+    currentWord: string;
+}
