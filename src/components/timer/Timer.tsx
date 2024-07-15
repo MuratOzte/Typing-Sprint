@@ -7,6 +7,7 @@ const Timer = ({
     isTyped = false,
     modalToggleHandler,
     isModalOpen,
+    setIsFinished,
 }: TimerProps) => {
     const [second, setSecond] = useState(time);
     const [fixedSecond, setFixedSecond] = useState('1:00');
@@ -17,6 +18,9 @@ const Timer = ({
 
     useEffect(() => {
         setFixedSecond(formatTime(second));
+        if (fixedSecond === '0:01') {
+            setIsFinished(true);
+        }
     }, [second]);
 
     useEffect(() => {

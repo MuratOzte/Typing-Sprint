@@ -11,7 +11,7 @@ export default function Home() {
     const [typedWord, setTypedWord] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [time, setTime] = useState(60);
-    const [isFinished, setIsFinished] = useState(true);
+    const [isFinished, setIsFinished] = useState(false);
 
     const { trueCount, falseCount } = useCount(typedWord, currentWord);
     const { isTyped, inputColor } = useInputColor(word, currentWord);
@@ -24,7 +24,10 @@ export default function Home() {
         <div className="w-full flex">
             <div className="w-3/12 bg-red-500"></div>
             {isFinished ? (
+                <ResultBox />
+            ) : (
                 <MainSection
+                    setIsFinished={setIsFinished}
                     falseCount={falseCount}
                     inputColor={inputColor}
                     isModalOpen={isModalOpen}
@@ -38,8 +41,6 @@ export default function Home() {
                     setTypedWord={setTypedWord}
                     setWord={setWord}
                 />
-            ) : (
-                <ResultBox />
             )}
             <div className="w-3/12 bg-red-500"></div>
         </div>

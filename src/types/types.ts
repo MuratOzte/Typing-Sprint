@@ -21,6 +21,7 @@ export interface TimerProps {
     isTyped?: boolean;
     modalToggleHandler: () => void;
     isModalOpen: boolean;
+    setIsFinished: (isFinished: boolean) => void;
 }
 
 export interface TimesProps {
@@ -52,6 +53,7 @@ export interface MainSectionProps {
     trueCount: number;
     falseCount: number;
     inputColor: string;
+    setIsFinished: (isFinished: boolean) => void;
 }
 
 export interface useInputColorProps {
