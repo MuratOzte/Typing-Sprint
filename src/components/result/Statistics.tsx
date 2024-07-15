@@ -5,16 +5,16 @@ import { IoTimeOutline } from 'react-icons/io5';
 const Statistics = () => {
     return (
         <div className="w-1/2">
-            <div className="flex justify-between items-center gap-3 ml-8 mt-5 text-xl pl-5">
-                <div className="flex gap-3">
+            <div className="flex items-center gap-12 ml-8 mt-5 text-xl pl-5">
+                <div className="flex gap-2">
                     <SiTicktick className="text-green-500" size={24} />
                     60
                 </div>
-                <div className="flex gap-3">
+                <div className="flex gap-2">
                     <IoAlertCircle className="text-red-500" size={28} />
                     60
                 </div>
-                <div className="flex gap-3">
+                <div className="flex gap-2">
                     <IoTimeOutline size={28} />
                     60
                 </div>
