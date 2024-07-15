@@ -3,7 +3,7 @@ import MainSection from '@/components/main/MainSection';
 import ResultBox from '@/components/result/ResultBox';
 import useCount from '@/hooks/useCount';
 import useInputColor from '@/hooks/useInputColor';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function Home() {
     const [word, setWord] = useState('');
@@ -11,7 +11,7 @@ export default function Home() {
     const [typedWord, setTypedWord] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [time, setTime] = useState(60);
-    const [isFinished, setIsFinished] = useState(false);
+    const [isFinished, setIsFinished] = useState(true);
 
     const { trueCount, falseCount } = useCount(typedWord, currentWord);
     const { isTyped, inputColor } = useInputColor(word, currentWord);
