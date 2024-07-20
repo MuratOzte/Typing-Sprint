@@ -7,7 +7,7 @@ import { FaLink } from 'react-icons/fa';
 const Details = () => {
     return (
         <div className="w-10/12 flex justify-center flex-col gap-5">
-            <div className="flex items-center px-8 py-2 gap-8 bg-slate-600 rounded-md mt-16 ">
+            <div className="flex items-center px-8 py-2 gap-8 bg-slate-600 rounded-md mt-14">
                 <IoTrophy className="text-9xl text-yellow-500" size={48} />
                 <p className="text-base text-slate-200 flex flex-col">
                     <span>You Beat</span>
