@@ -6,6 +6,7 @@ import useInputColor from '@/hooks/useInputColor';
 import { useState } from 'react';
 
 export default function Home() {
+    ''
     const [word, setWord] = useState('');
     const [currentWord, setCurrentWord] = useState<string>('');
     const [typedWord, setTypedWord] = useState('');
