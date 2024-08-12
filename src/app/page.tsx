@@ -1,12 +1,14 @@
 'use client';
 import MainSection from '@/components/main/MainSection';
 import ResultBox from '@/components/result/ResultBox';
+import LeaderBoard from '@/components/leaderBoard/LeaderBoard';
+
 import useCount from '@/hooks/useCount';
 import useInputColor from '@/hooks/useInputColor';
 import { useState } from 'react';
 
 export default function Home() {
-    ''
+    ('');
     const [word, setWord] = useState('');
     const [currentWord, setCurrentWord] = useState<string>('');
     const [typedWord, setTypedWord] = useState('');
@@ -23,7 +25,9 @@ export default function Home() {
 
     return (
         <div className="w-full flex">
-            <div className="w-3/12 bg-red-500"></div>
+            <div className="w-3/12 bg-gray-100">
+                <LeaderBoard />
+            </div>
             {isFinished ? (
                 <ResultBox />
             ) : (
