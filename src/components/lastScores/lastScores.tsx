@@ -1,27 +1,27 @@
-import { FaClock } from 'react-icons/fa'; // Font Awesome Clock ikonu için import
+import { FaChartBar } from 'react-icons/fa'; // Font Awesome Chart Bar icon for statistics
 
-const lastScores = [
-    { name: 'Murat', score: 95 },
-    { name: 'Surat', score: 88 },
-    { name: 'Kurat', score: 76 },
-    { name: 'Turat', score: 64 },
+const statistics = [
+    { label: 'Total Words Typed', value: 1200 },
+    { label: 'Accuracy Rate', value: '95%' },
+    { label: 'Highest WPS', value: 120 }, // Örnek: En Yüksek WPS
+    { label: 'Average WPS', value: 85 }, // Örnek: Ortalama WPS
 ];
 
-const LastScores = () => {
+const Statistics = () => {
     return (
         <div className="w-full mx-auto bg-slate-300 flex items-center flex-col">
             <h2 className="text-3xl font-bold text-center text-gray-300 flex justify-center items-center w-fit bg-gray-700 my-2 p-4 px-6 rounded-md shadow-2xl">
-                <FaClock className="text-yellow-500 mr-2" />
-                Last Scores
+                <FaChartBar className="text-green-500 mr-2" />
+                Statistics
             </h2>
             <ul className="p-4 w-full">
-                {lastScores.map((score, index) => (
+                {statistics.map((stat, index) => (
                     <li
                         key={index}
                         className={`p-3 bg-slate-400 hover:bg-slate-500 text-gray-900 font-semibold rounded-lg mb-2 transition-colors duration-300 pl-4`}
                     >
                         <span className="font-semibold">
-                            {score.name} - {score.score} <span className='text-gray-700 text-xs' >Words Per Second</span>
+                            {stat.label}: {stat.value}
                         </span>
                     </li>
                 ))}
@@ -30,4 +30,4 @@ const LastScores = () => {
     );
 };
 
-export default LastScores;
+export default Statistics;
