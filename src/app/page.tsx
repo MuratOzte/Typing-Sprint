@@ -6,6 +6,8 @@ import LeaderBoard from '@/components/leaderBoard/LeaderBoard';
 import useCount from '@/hooks/useCount';
 import useInputColor from '@/hooks/useInputColor';
 import { useState } from 'react';
+import Gamemodes from '@/components/gamemodes/Gamemodes';
+import LastScores from '@/components/lastScores/lastScores';
 
 export default function Home() {
     ('');
@@ -47,7 +49,10 @@ export default function Home() {
                     setWord={setWord}
                 />
             )}
-            <div className="w-3/12 bg-red-500"></div>
+            <div className="w-3/12 bg-slate-300">
+                <Gamemodes />
+                <LastScores />
+            </div>
         </div>
     );
 }

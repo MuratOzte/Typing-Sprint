@@ -22,4 +22,5 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #cbd5e1;
+    overflow-y: hidden;
 }
