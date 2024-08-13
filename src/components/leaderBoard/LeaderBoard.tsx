@@ -45,8 +45,8 @@ const leaderBoard = [
 
 const LeaderBoard = () => {
     return (
-        <div className="w-full mx-auto h-screen bg-gray-100 flex items-center flex-col">
-            <h2 className="text-3xl font-bold text-center text-gray-800 flex justify-center items-center w-fit bg-gray-400 my-8 p-4 px-6 rounded-md shadow-2xl">
+        <div className="w-full mx-auto h-screen bg-slate-300 flex items-center flex-col">
+            <h2 className="text-3xl font-bold text-center text-gray-300 flex justify-center items-center w-fit bg-gray-700 my-4 p-4 px-6 rounded-md shadow-2xl">
                 <FaTrophy className="text-yellow-500 mr-2" />
                 Leaderboard
             </h2>
@@ -54,9 +54,7 @@ const LeaderBoard = () => {
                 {leaderBoard.map((leader, index) => (
                     <li
                         key={index}
-                        className={`p-2 rounded-lg mb-2 transition-colors duration-300 ${
-                            index % 2 === 0 ? 'bg-gray-400' : 'bg-gray-300'
-                        }`}
+                        className={`p-3 rounded-lg mb-2 transition-colors duration-300 bg-slate-400 pl-4`}
                     >
                         <span className="font-semibold">
                             {leader.name} - {leader.wps}{' '}

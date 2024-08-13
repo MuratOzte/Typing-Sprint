@@ -14,7 +14,7 @@ export default function Home() {
     const [typedWord, setTypedWord] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [time, setTime] = useState(60);
-    const [isFinished, setIsFinished] = useState(true);
+    const [isFinished, setIsFinished] = useState(false);
 
     const { trueCount, falseCount } = useCount(typedWord, currentWord);
     const { isTyped, inputColor } = useInputColor(word, currentWord);
@@ -25,7 +25,7 @@ export default function Home() {
 
     return (
         <div className="w-full flex">
-            <div className="w-3/12 bg-gray-100">
+            <div className="w-3/12 bg-slate-300">
                 <LeaderBoard />
             </div>
             {isFinished ? (

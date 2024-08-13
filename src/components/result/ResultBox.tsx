@@ -1,4 +1,4 @@
-import Nav from '../main/Nav';
+import Nav from '../common/Nav';
 import Details from './Details';
 import Statistics from './Statistics';
 import WpmBox from './WpmBox';

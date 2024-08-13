@@ -1,5 +1,5 @@
 import { AnimatePresence } from 'framer-motion';
-import Nav from './Nav';
+import Nav from '../common/Nav';
 import TimerModal from '../timer/TimerModal';
 import Timer from '../timer/Timer';
 import WordBox from './WordBox';
