@@ -15,7 +15,7 @@ const Gamemodes = () => {
                     In your own words
                 </button>
                 <button className="p-3 bg-slate-500 text-gray-300 font-semibold rounded-lg cursor-not-allowed">
-                    Multiplayer - Not Working
+                    Multiplayer - Soon
                 </button>
                 <button className="p-3 bg-slate-400 hover:bg-slate-500 text-gray-900 font-semibold rounded-lg transition-colors duration-300">
                     Endless

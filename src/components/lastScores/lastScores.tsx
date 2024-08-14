@@ -1,10 +1,10 @@
-import { FaChartBar } from 'react-icons/fa'; // Font Awesome Chart Bar icon for statistics
+import { FaChartBar } from 'react-icons/fa';
 
 const statistics = [
     { label: 'Total Words Typed', value: 1200 },
     { label: 'Accuracy Rate', value: '95%' },
-    { label: 'Highest WPS', value: 120 }, // Örnek: En Yüksek WPS
-    { label: 'Average WPS', value: 85 }, // Örnek: Ortalama WPS
+    { label: 'Highest WPS', value: 120 },
+    { label: 'Average WPS', value: 85 },
 ];
 
 const Statistics = () => {
