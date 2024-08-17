@@ -4,12 +4,14 @@ export interface run {
     isFinished: boolean;
     trueCount: number;
     falseCount: number;
+    wpm: number;
 }
 
 const initialState = {
     isFinished: false,
     trueCount: 0,
     falseCount: 0,
+    wpm: 120,
 };
 
 const runSlice = createSlice({
@@ -24,6 +26,9 @@ const runSlice = createSlice({
         },
         setFalseCount(state, action) {
             state.falseCount = action.payload;
+        },
+        setWpm(state, action) {
+            state.wpm = action.payload;
         },
     },
 });

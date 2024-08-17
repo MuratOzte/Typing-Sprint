@@ -10,7 +10,7 @@ const ResultBox = () => {
             <div className="flex justify-center ">
                 <div className="w-5/6 flex text-4xl text-center mt-40 h-72 bg-gray-400 rounded-md shadow-xl">
                     <div className="flex flex-col w-1/2">
-                        <WpmBox wpm={120} />
+                        <WpmBox />
                         <Statistics />
                     </div>
                     <div className="w-1/2">
