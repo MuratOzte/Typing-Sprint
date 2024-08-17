@@ -7,7 +7,7 @@ import useCount from '@/hooks/useCount';
 import useInputColor from '@/hooks/useInputColor';
 import { useState } from 'react';
 import Gamemodes from '@/components/gamemodes/Gamemodes';
-import LastScores from '@/components/lastScores/lastScores';
+import Statistics from '@/components/statistics/Statistics';
 
 export default function Home() {
     ('');
@@ -51,7 +51,7 @@ export default function Home() {
             )}
             <div className="w-3/12 bg-slate-300">
                 <Gamemodes />
-                <LastScores />
+                <Statistics />
             </div>
         </div>
     );

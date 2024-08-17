@@ -1,4 +1,6 @@
 import { FaTrophy } from 'react-icons/fa'; // Font Awesome Trophy ikonu için import
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 const leaderBoard = [
     {
@@ -44,11 +46,21 @@ const leaderBoard = [
 ];
 
 const LeaderBoard = () => {
+    const ui = useSelector((state: RootState) => state.ui);
+
     return (
         <div className="w-full mx-auto h-screen bg-slate-300 flex items-center flex-col">
-            <h2 className="text-3xl font-bold text-center text-gray-300 flex justify-center items-center w-fit bg-gray-700 my-4 p-4 px-6 rounded-md shadow-2xl">
-                <FaTrophy className="text-yellow-500 mr-2" />
-                Leaderboard
+            <h2
+                className="text-3xl font-bold text-center text-gray-300 flex justify-center items-center w-fit bg-gray-700 mt-4 p-4 px-6 rounded-md shadow-2xl max-w-64"
+                style={{ marginBottom: ui.language == 'en' ? '16px' : 0 }}
+            >
+                <FaTrophy
+                    className="text-yellow-500 mr-2"
+                    style={{
+                        fontSize: ui.language === 'en' ? '2rem' : '4rem',
+                    }}
+                />
+                {ui.language === 'tr' ? 'Liderlik Tablosu' : 'Leaderboard'}
             </h2>
             <ol className="list-decimal list-inside p-4 w-full">
                 {leaderBoard.map((leader, index) => (
@@ -60,8 +72,15 @@ const LeaderBoard = () => {
                             {leader.name} - {leader.wps}{' '}
                         </span>
 
-                        <span className="text-gray-800 text-sm">
-                            Words Per Second
+                        <span
+                            style={{
+                                fontSize: ui.language == 'en' ? '14px' : '12px',
+                            }}
+                            className="text-gray-800 text-sm"
+                        >
+                            {ui.language === 'tr'
+                                ? 'Saniye Başına Kelime'
+                                : 'Words per Second'}
                         </span>
                     </li>
                 ))}
