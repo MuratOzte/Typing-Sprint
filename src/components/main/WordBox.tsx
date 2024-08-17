@@ -2,17 +2,25 @@ import { Words } from '@/data/words';
 import { WordboxProps } from '@/types/types';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import Loading from '../common/Loading';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
     const [words, setWords] = useState<string[]>([]);
+    const run = useSelector((state: RootState) => state.run);
+
+    useEffect(() => {
+        console.log('words', words);
+        console.log('typedWord', typedWord);
+    }, [words, typedWord]);
 
     useLayoutEffect(() => {
         const temp = [];
         for (let i = 1; i <= 110; i++) {
             temp.push(Words[Math.floor(Math.random() * Words.length)]);
         }
-        setWords([...words, ...temp]);
-    }, []);
+        setWords(temp);
+    }, [run.isFinished]);
 
     useEffect(() => {
         if (typedWord === '' || words.length === 0) return;
@@ -39,7 +47,8 @@ const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
                         key={index}
                         style={{
                             display: index < 5 ? 'block' : 'none',
-                            backgroundColor: index == 0 ? 'Highlight' : 'transparent',
+                            backgroundColor:
+                                index == 0 ? 'Highlight' : 'transparent',
                         }}
                     >
                         {word}

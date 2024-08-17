@@ -35,6 +35,9 @@ export default function Home() {
             dispatch(runSlice.actions.setIsFinished(true));
             dispatch(runSlice.actions.setTrueCount(trueCount));
             dispatch(runSlice.actions.setFalseCount(falseCount));
+            setCurrentWord('');
+            setTypedWord('');
+            setWord('');
         }
     }, [trueCount, falseCount, run.isFinished]);
 
