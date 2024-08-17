@@ -8,7 +8,7 @@ const Nav = () => {
     };
 
     return (
-        <div className="w-full bg-gray-100 h-20 flex items-center justify-between px-4">
+        <div className="w-full bg-gray-200 h-20 flex items-center justify-between px-4 mt-4 rounded-md shadow-lg">
             <div className="flex gap-5">
                 <button onClick={() => toggleLanguage('tr')}>
                     <img

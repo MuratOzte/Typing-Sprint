@@ -4,10 +4,10 @@ export interface run {}
 
 const initialState = {};
 
-const uiSlice = createSlice({
-    name: 'ui',
+const runSlice = createSlice({
+    name: 'run',
     initialState,
     reducers: {},
 });
 
-export default uiSlice;
+export default runSlice;

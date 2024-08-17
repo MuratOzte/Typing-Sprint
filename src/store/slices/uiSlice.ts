@@ -1,24 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface ui {
-    isAboutSectionOpened: boolean;
-    isNavClicked: boolean;
+    language: string;
+    isLoggedIn: boolean;
 }
 
 const initialState = {
-    isAboutSectionOpened: false,
-    isNavClicked: false,
+    language: 'en',
+    isLoggedIn: false,
 };
 
 const uiSlice = createSlice({
     name: 'ui',
     initialState,
     reducers: {
-        toggleAboutSection: (state, action) => {
-            state.isAboutSectionOpened = action.payload;
+        setLanguage(state, action) {
+            state.language = action.payload;
         },
-        toggleNav: (state, action) => {
-            state.isNavClicked = action.payload;
+        setIsLoggedIn(state, action) {
+            state.isLoggedIn = action.payload;
         },
     },
 });
