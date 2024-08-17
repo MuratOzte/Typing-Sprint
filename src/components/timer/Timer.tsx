@@ -2,15 +2,19 @@ import { useCallback, useEffect, useState } from 'react';
 import { MdOutlineEdit } from 'react-icons/md';
 import { TimerProps } from '@/types/types';
 
+import { useDispatch } from 'react-redux';
+import runSlice from '@/store/slices/runSlice';
+
 const Timer = ({
     time = 60,
     isTyped = false,
     modalToggleHandler,
     isModalOpen,
-    setIsFinished,
 }: TimerProps) => {
     const [second, setSecond] = useState(time);
     const [fixedSecond, setFixedSecond] = useState('1:00');
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setSecond(time);
@@ -19,7 +23,7 @@ const Timer = ({
     useEffect(() => {
         setFixedSecond(formatTime(second));
         if (fixedSecond === '0:01') {
-            setIsFinished(true);
+            dispatch(runSlice.actions.setIsFinished(true));
         }
     }, [second]);
 

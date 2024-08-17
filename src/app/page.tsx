@@ -10,17 +10,18 @@ import Gamemodes from '@/components/gamemodes/Gamemodes';
 import Statistics from '@/components/statistics/Statistics';
 
 import runSlice from '@/store/slices/runSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 export default function Home() {
     const dispatch = useDispatch();
+    const run = useSelector((state: RootState) => state.run);
 
     const [word, setWord] = useState('');
     const [currentWord, setCurrentWord] = useState<string>('');
     const [typedWord, setTypedWord] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [time, setTime] = useState(60);
-    const [isFinished, setIsFinished] = useState(false);
 
     const { trueCount, falseCount } = useCount(typedWord, currentWord);
     const { isTyped, inputColor } = useInputColor(word, currentWord);
@@ -30,23 +31,22 @@ export default function Home() {
     };
 
     useEffect(() => {
-        if (isFinished) {
+        if (run.isFinished) {
             dispatch(runSlice.actions.setIsFinished(true));
             dispatch(runSlice.actions.setTrueCount(trueCount));
             dispatch(runSlice.actions.setFalseCount(falseCount));
         }
-    }, [trueCount, falseCount]);
+    }, [trueCount, falseCount, run.isFinished]);
 
     return (
         <div className="w-full flex">
             <div className="w-3/12 bg-slate-300">
                 <LeaderBoard />
             </div>
-            {isFinished ? (
+            {run.isFinished ? (
                 <ResultBox />
             ) : (
                 <MainSection
-                    setIsFinished={setIsFinished}
                     falseCount={falseCount}
                     inputColor={inputColor}
                     isModalOpen={isModalOpen}

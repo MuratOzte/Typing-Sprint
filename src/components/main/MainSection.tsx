@@ -20,7 +20,6 @@ const MainSection: React.FC<MainSectionProps> = ({
     typedWord,
     setTypedWord,
     setWord,
-    setIsFinished
 }) => {
     return (
         <div className='w-6/12 h-screen overflow-hidden' >
@@ -35,7 +34,6 @@ const MainSection: React.FC<MainSectionProps> = ({
                     )}
                 </AnimatePresence>
                 <Timer
-                    setIsFinished={setIsFinished}
                     isModalOpen={isModalOpen}
                     time={time}
                     isTyped={isTyped}
