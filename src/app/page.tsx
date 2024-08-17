@@ -5,12 +5,16 @@ import LeaderBoard from '@/components/leaderBoard/LeaderBoard';
 
 import useCount from '@/hooks/useCount';
 import useInputColor from '@/hooks/useInputColor';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Gamemodes from '@/components/gamemodes/Gamemodes';
 import Statistics from '@/components/statistics/Statistics';
 
+import runSlice from '@/store/slices/runSlice';
+import { useDispatch } from 'react-redux';
+
 export default function Home() {
-    ('');
+    const dispatch = useDispatch();
+
     const [word, setWord] = useState('');
     const [currentWord, setCurrentWord] = useState<string>('');
     const [typedWord, setTypedWord] = useState('');
@@ -24,6 +28,14 @@ export default function Home() {
     const modalToggleHandler = () => {
         setIsModalOpen((prev) => !prev);
     };
+
+    useEffect(() => {
+        if (isFinished) {
+            dispatch(runSlice.actions.setIsFinished(true));
+            dispatch(runSlice.actions.setTrueCount(trueCount));
+            dispatch(runSlice.actions.setFalseCount(falseCount));
+        }
+    }, [trueCount, falseCount]);
 
     return (
         <div className="w-full flex">
