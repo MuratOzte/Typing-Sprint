@@ -5,13 +5,15 @@ export interface run {
     trueCount: number;
     falseCount: number;
     wpm: number;
+    time: number;
 }
 
 const initialState = {
     isFinished: false,
     trueCount: 0,
     falseCount: 0,
-    wpm: 120,
+    wpm: 0,
+    time: 0,
 };
 
 const runSlice = createSlice({
@@ -27,8 +29,17 @@ const runSlice = createSlice({
         setFalseCount(state, action) {
             state.falseCount = action.payload;
         },
-        setWpm(state, action) {
-            state.wpm = action.payload;
+        setWpm(state) {
+            let temp =
+                state.time > 60 ? 1 / (state.time / 60) : 60 / state.time;
+
+            state.wpm =
+                state.trueCount + state.falseCount > 0
+                    ? state.trueCount * temp
+                    : 0;
+        },
+        setTime(state, action) {
+            state.time = action.payload;
         },
     },
 });

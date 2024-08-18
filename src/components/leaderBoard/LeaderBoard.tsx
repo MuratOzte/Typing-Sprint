@@ -73,14 +73,11 @@ const LeaderBoard = () => {
                         </span>
 
                         <span
-                            style={{
-                                fontSize: ui.language == 'en' ? '14px' : '12px',
-                            }}
                             className="text-gray-800 text-sm"
                         >
                             {ui.language === 'tr'
-                                ? 'Saniye Başına Kelime'
-                                : 'Words per Second'}
+                                ? 'Dakika Başina Kelime'
+                                : 'Words per Minute'}
                         </span>
                     </li>
                 ))}

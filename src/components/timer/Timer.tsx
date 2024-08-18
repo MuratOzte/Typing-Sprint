@@ -18,6 +18,7 @@ const Timer = ({
 
     useEffect(() => {
         setSecond(time);
+        dispatch(runSlice.actions.setTime(time));
     }, [time]);
 
     useEffect(() => {

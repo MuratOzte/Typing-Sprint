@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/store/store';
+import runSlice from '@/store/slices/runSlice';
 
 const WpmBox = () => {
+    const dispatch = useDispatch();
+
     const run = useSelector((state: RootState) => state.run);
     const ui = useSelector((state: RootState) => state.ui);
+
+    useEffect(() => {
+        dispatch(runSlice.actions.setWpm());
+    }, [run.isFinished]);
 
     return (
         <div className="w-2/3 flex flex-col bg-slate-600 h-1/3 items-center justify-center rounded-md mx-12 mt-[53px]">
