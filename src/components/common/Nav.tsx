@@ -15,6 +15,7 @@ const Nav = () => {
     };
 
     const newGameHandler = () => {
+        dispatch(uiSlice.actions.setIsRePlayButtonClicked(true));
         dispatch(runSlice.actions.setIsFinished(false));
     };
 

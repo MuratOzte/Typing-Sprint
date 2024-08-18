@@ -1,19 +1,25 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import uiSlice from '@/store/slices/uiSlice';
 
 const useCount = (typedWord: string, currentWord: string) => {
+    const dispatch = useDispatch();
+
     const [trueCount, setTrueCount] = useState(0);
     const [falseCount, setFalseCount] = useState(0);
 
     const run = useSelector((state: RootState) => state.run);
+    const ui = useSelector((state: RootState) => state.ui);
 
     useEffect(() => {
-        if (run.isFinished) {
+        if (ui.isRePlayButtonClicked) {
+            //! BUG
             setTrueCount(0);
             setFalseCount(0);
+            dispatch(uiSlice.actions.setIsRePlayButtonClicked(false));
         }
-    }, [run.isFinished]);
+    }, [ui.isRePlayButtonClicked]);
 
     useEffect(() => {
         if (typedWord === currentWord && typedWord !== '') {

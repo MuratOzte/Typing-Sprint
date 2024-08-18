@@ -35,7 +35,7 @@ const runSlice = createSlice({
 
             state.wpm =
                 state.trueCount + state.falseCount > 0
-                    ? state.trueCount * temp
+                    ? Math.floor(state.trueCount * temp)
                     : 0;
         },
         setTime(state, action) {
