@@ -14,7 +14,6 @@ const useCount = (typedWord: string, currentWord: string) => {
 
     useEffect(() => {
         if (ui.isRePlayButtonClicked) {
-            //! BUG
             setTrueCount(0);
             setFalseCount(0);
             dispatch(uiSlice.actions.setIsRePlayButtonClicked(false));
