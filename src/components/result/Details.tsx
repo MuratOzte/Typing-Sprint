@@ -16,7 +16,9 @@ const Details = () => {
                 <IoTrophy className="text-9xl text-yellow-500" size={48} />
                 <p className="text-base text-slate-200 flex flex-col">
                     <span>{ui.language == 'en' ? 'You Beat' : 'Dünyanin'}</span>
-                    <span className="text-slate-200 font-bold">%60</span>
+                    <span className="text-slate-200 font-bold">
+                        %60 {ui.language == 'en' ? '' : '`ini'}
+                    </span>
                     <span>
                         {ui.language == 'en' ? 'of the world' : 'Geçtin'}
                     </span>
