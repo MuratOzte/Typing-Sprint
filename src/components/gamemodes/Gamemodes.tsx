@@ -21,7 +21,7 @@ const Gamemodes = () => {
                     {ui.language === 'tr' ? 'Sonsuz' : 'Endless'}
                 </button>
                 <button className="p-3 bg-slate-400 hover:bg-slate-500 text-gray-900 font-semibold rounded-lg transition-colors duration-300">
-                    {ui.language === 'tr' ? 'Hizli' : 'Fast'}
+                    {ui.language === 'tr' ? 'Kendi Kelimelerinle' : 'With Your Own Words'}
                 </button>
             </div>
         </div>
