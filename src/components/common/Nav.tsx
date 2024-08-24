@@ -21,7 +21,7 @@ const Nav = () => {
 
     return (
         <div className="w-full h-20 flex items-center justify-between px-4 mt-4 rounded-md shadow-lg bg-gray-700">
-            <div className="flex gap-5 w-1/3">
+            <div className="flex gap-5 w-1/3 justify-center">
                 <button onClick={() => toggleLanguage('en')}>
                     <img
                         src="https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg"
@@ -50,7 +50,7 @@ const Nav = () => {
                 </button>
             )}
             <div className='w-1/3 flex justify-center' >
-                <button className="text-white uppercase bg-gray-600 px-4 py-2 rounded-lg shadow-md hover:bg-gray-800 transition duration-300 ease-in-out transform hover:scale-105">
+                <button className="text-white uppercase bg-gray-500 px-4 py-2 rounded-lg shadow-md hover:bg-gray-500 transition duration-300 ease-in-out transform hover:scale-105">
                     {ui.language === 'tr' ? 'Giriş Yap' : 'Login'}
                 </button>
             </div>
