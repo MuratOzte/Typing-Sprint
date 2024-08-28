@@ -4,10 +4,11 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
-import { queryUserByEmail } from './queryByUser';
-import { User } from '@/types/types'; // Import the User type from the appropriate module
+import prisma from '@/app/libs/prismadb';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
 
 export const authOptions: AuthOptions = {
+    adapter: PrismaAdapter(prisma),
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_ID as string,
@@ -23,31 +24,35 @@ export const authOptions: AuthOptions = {
                 email: { label: 'email', type: 'text' },
                 password: { label: 'password', type: 'password' },
             },
-            async authorize(credentials, req): Promise<unknown> {
+            async authorize(credentials, req) {
                 if (!credentials?.email || !credentials?.password) {
                     throw new Error('Invalid credentials');
                 }
-            
-                // Replace Prisma user query with your own database logic
-                const user = await queryUserByEmail(credentials.email);
-            
-                if (!user || !user.hashedPassword) {
+
+                const user = await prisma.user.findUnique({
+                    where: {
+                        email: credentials.email,
+                    },
+                });
+
+                if (!user || !user?.hashedPassword) {
                     throw new Error('Invalid Credentials');
                 }
-            
+
                 const isCorrectPassword = await bcrypt.compare(
                     credentials.password,
                     user.hashedPassword
                 );
-            
+
                 if (!isCorrectPassword) {
                     throw new Error('Invalid Credentials');
                 }
-            
+
                 return user;
             },
         }),
     ],
+    debug: process.env.NODE_ENV === 'development',
     session: {
         strategy: 'jwt',
     },
