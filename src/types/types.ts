@@ -59,12 +59,4 @@ export interface useInputColorProps {
     currentWord: string;
 }
 
-export interface User {
-    id: string;
-    email: string;
-    hashedPassword: string;
-    name: string;
-    image?: string;
-    createdAt: Date;
-    updatedAt: Date;
-}
+
