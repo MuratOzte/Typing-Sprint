@@ -45,7 +45,7 @@ const Timer = ({
     };
 
     return (
-        <div className="bg-slate-100 pl-5 pr-3 py-2 rounded-lg shadow-lg text-xl font-mono flex items-center gap-4">
+        <div className="bg-slate-400 pl-5 pr-3 py-2 rounded-lg shadow-lg text-xl font-mono flex items-center gap-4">
             {fixedSecond}
             <div
                 onClick={() => {

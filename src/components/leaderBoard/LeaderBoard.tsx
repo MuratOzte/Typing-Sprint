@@ -49,9 +49,9 @@ const LeaderBoard = () => {
     const ui = useSelector((state: RootState) => state.ui);
 
     return (
-        <div className="w-full mx-auto h-screen bg-slate-300 flex items-center flex-col">
+        <div className="w-full mx-auto h-screen bg-slate-900 flex items-center flex-col">
             <h2
-                className="text-3xl font-bold text-center text-gray-300 flex justify-center items-center w-fit bg-gray-700 mt-4 p-4 px-6 rounded-md shadow-2xl max-w-64"
+                className="text-3xl font-bold text-center text-gray-300 flex justify-center items-center w-fit bg-slate-600 mt-4 p-4 px-6 rounded-md shadow-2xl max-w-64"
                 style={{ marginBottom: ui.language == 'en' ? '16px' : 0 }}
             >
                 <FaTrophy
@@ -72,9 +72,7 @@ const LeaderBoard = () => {
                             {leader.name} - {leader.wps}{' '}
                         </span>
 
-                        <span
-                            className="text-gray-800 text-sm"
-                        >
+                        <span className="text-gray-800 text-sm">
                             {ui.language === 'tr'
                                 ? 'Dakika Başina Kelime'
                                 : 'Words per Minute'}

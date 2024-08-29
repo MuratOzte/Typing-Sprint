@@ -8,7 +8,7 @@ const Statistics = () => {
     const statistics = [1200, '85%', 95, 70];
 
     return (
-        <div className="w-full mx-auto bg-slate-300 flex items-center flex-col">
+        <div className="w-full mx-auto bg-slate-900 flex items-center flex-col">
             <h2 className="text-3xl font-bold text-center text-gray-300 flex justify-center items-center w-fit bg-gray-700 my-2 p-4 px-6 rounded-md shadow-2xl">
                 <FaChartBar className="text-green-500 mr-2" />
                 {ui.language === 'tr' ? 'İstatistikler' : 'Statistics'}

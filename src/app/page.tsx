@@ -43,7 +43,7 @@ export default function Home() {
 
     return (
         <div className="w-full flex">
-            <div className="w-3/12 bg-slate-300">
+            <div className="w-3/12">
                 <LeaderBoard />
             </div>
             {run.isFinished ? (
@@ -64,7 +64,7 @@ export default function Home() {
                     setWord={setWord}
                 />
             )}
-            <div className="w-3/12 bg-slate-300">
+            <div className="w-3/12 bg-slate-900">
                 <Gamemodes />
                 <Statistics />
             </div>
