@@ -4,12 +4,14 @@ export interface ui {
     language: string;
     isLoggedIn: boolean;
     isRePlayButtonClicked: boolean;
+    isLoginModalOpen: boolean;
 }
 
 const initialState = {
     language: 'en',
     isLoggedIn: false,
     isRePlayButtonClicked: false,
+    isLoginModalOpen: false,
 };
 
 const uiSlice = createSlice({
@@ -24,6 +26,9 @@ const uiSlice = createSlice({
         },
         setIsRePlayButtonClicked(state, action) {
             state.isRePlayButtonClicked = action.payload;
+        },
+        setIsLoginModalOpen(state, action) {
+            state.isLoginModalOpen = action.payload;
         },
     },
 });

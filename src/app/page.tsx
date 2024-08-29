@@ -12,10 +12,13 @@ import Statistics from '@/components/statistics/Statistics';
 import runSlice from '@/store/slices/runSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import { Dialog } from '@/components/ui/dialog';
+import Nav from '@/components/common/Nav';
 
 export default function Home() {
     const dispatch = useDispatch();
     const run = useSelector((state: RootState) => state.run);
+    const ui = useSelector((state: RootState) => state.ui);
 
     const [word, setWord] = useState('');
     const [currentWord, setCurrentWord] = useState<string>('');
