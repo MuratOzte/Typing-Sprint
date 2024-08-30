@@ -12,8 +12,7 @@ import Statistics from '@/components/statistics/Statistics';
 import runSlice from '@/store/slices/runSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
-import { Dialog } from '@/components/ui/dialog';
-import Nav from '@/components/common/Nav';
+import LoginModal from '@/components/modal/LoginModal';
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -46,6 +45,7 @@ export default function Home() {
 
     return (
         <div className="w-full flex">
+            <LoginModal />
             <div className="w-3/12">
                 <LeaderBoard />
             </div>
