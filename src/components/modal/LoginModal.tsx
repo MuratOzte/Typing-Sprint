@@ -2,6 +2,7 @@ import uiSlice from '@/store/slices/uiSlice';
 import { RootState } from '@/store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { login } from '@/libs/auth';
 
 const LoginModal = () => {
     const dispatch = useDispatch();
@@ -31,6 +32,11 @@ const LoginModal = () => {
 
     const isLabelActive = (input: string) => {
         return inputValues[input as keyof typeof inputValues] !== '';
+    };
+
+    const submitHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        login(inputValues.username, inputValues.password);
     };
 
     return (
@@ -97,6 +103,7 @@ const LoginModal = () => {
                                 <button
                                     type="submit"
                                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    onClick={submitHandler}
                                 >
                                     Login
                                 </button>

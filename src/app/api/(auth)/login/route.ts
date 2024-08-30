@@ -3,19 +3,20 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function POST({
-    req,
-    res,
-}: {
-    req: NextRequest;
-    res: NextResponse;
-}) {
+export async function POST(req: NextRequest) {
     try {
-        console.log(req.body);
-    } catch (error) {
-        console.log(error);
-        return NextResponse.json({ error: (error as Error).message });
-    }
+        // Parse JSON from the request body
+        const data = await req.json();
+        console.log(data);
 
-    return NextResponse.json({ asd: 'Deneme' });
+        // Example: Use Prisma to interact with the database
+        // const user = await prisma.user.create({
+        //     data: { ... },
+        // });
+
+        return NextResponse.json({ message: 'Success', data: 'Deneme' });
+    } catch (error) {
+        console.error('Error in POST handler:', error);
+        return NextResponse.json({ error: (error as Error).message }, { status: 500 });
+    }
 }
