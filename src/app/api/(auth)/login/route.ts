@@ -1,22 +1,50 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
     try {
-        // Parse JSON from the request body
         const data = await req.json();
         console.log(data);
 
-        // Example: Use Prisma to interact with the database
-        // const user = await prisma.user.create({
-        //     data: { ... },
-        // });
+        const user = await prisma.user.findUnique({
+            where: {
+                email: data.email,
+            },
+        });
 
-        return NextResponse.json({ message: 'Success', data: 'Deneme' });
+        if (!user) {
+            return NextResponse.json(
+                { error: 'User not found' },
+                { status: 404 }
+            );
+        }
+
+        const passwordMatch = await bcrypt.compare(
+            data.password,
+            user.password
+        );
+
+        if (!passwordMatch) {
+            return NextResponse.json(
+                { error: 'Invalid credentials' },
+                { status: 401 }
+            );
+        }
+
+        console.log('User authenticated successfully');
+
+        return NextResponse.json({
+            message: 'Success',
+            data: 'User authenticated',
+        });
     } catch (error) {
         console.error('Error in POST handler:', error);
-        return NextResponse.json({ error: (error as Error).message }, { status: 500 });
+        return NextResponse.json(
+            { error: (error as Error).message },
+            { status: 500 }
+        );
     }
 }
