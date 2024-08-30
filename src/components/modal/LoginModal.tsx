@@ -1,11 +1,16 @@
 import uiSlice from '@/store/slices/uiSlice';
 import { RootState } from '@/store/store';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 
 const LoginModal = () => {
     const dispatch = useDispatch();
-
     const ui = useSelector((state: RootState) => state.ui);
+
+    const [inputValues, setInputValues] = useState({
+        username: '',
+        password: '',
+    });
 
     const closeModal = () => {
         dispatch(uiSlice.actions.setIsLoginModalOpen(false));
@@ -17,6 +22,17 @@ const LoginModal = () => {
         }
     };
 
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValues({
+            ...inputValues,
+            [e.target.id]: e.target.value,
+        });
+    };
+
+    const isLabelActive = (input: string) => {
+        return inputValues[input as keyof typeof inputValues] !== '';
+    };
+
     return (
         <>
             {ui.isLoginModalOpen && (
@@ -24,9 +40,9 @@ const LoginModal = () => {
                     className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
                     onClick={handleBackgroundClick}
                 >
-                    <div className="bg-white rounded-lg p-6 max-w-lg w-full">
+                    <div className="bg-slate-300 rounded-lg p-6 max-w-lg w-full">
                         <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-xl font-semibold">
+                            <h2 className="text-xl font-semibold text-slate-700">
                                 Login / Register
                             </h2>
                             <button
@@ -37,31 +53,45 @@ const LoginModal = () => {
                             </button>
                         </div>
                         <form>
-                            <div className="mb-4">
-                                <label
-                                    className="block text-gray-700 text-sm font-bold mb-2"
-                                    htmlFor="username"
-                                >
-                                    Username
-                                </label>
+                            <div className="relative my-8">
                                 <input
                                     type="text"
                                     id="username"
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    value={inputValues.username}
+                                    onChange={handleInputChange}
+                                    className="h-10 shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-500"
                                 />
-                            </div>
-                            <div className="mb-4">
                                 <label
-                                    className="block text-gray-700 text-sm font-bold mb-2"
-                                    htmlFor="password"
+                                    htmlFor="username"
+                                    className={`absolute left-3 text-gray-700 transition-all duration-200 ease-in-out ${
+                                        isLabelActive('username') ||
+                                        inputValues.username
+                                            ? '-translate-y-5 text-sm'
+                                            : 'translate-y-2.5'
+                                    }`}
                                 >
-                                    Password
+                                    Username
                                 </label>
+                            </div>
+                            <div className="relative mb-4">
                                 <input
                                     type="password"
                                     id="password"
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                                    value={inputValues.password}
+                                    onChange={handleInputChange}
+                                    className="h-10 shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-500"
                                 />
+                                <label
+                                    htmlFor="password"
+                                    className={`absolute left-3 text-gray-700 transition-all duration-200 ease-in-out ${
+                                        isLabelActive('password') ||
+                                        inputValues.password
+                                            ? '-translate-y-5 text-sm'
+                                            : 'translate-y-2.5'
+                                    }`}
+                                >
+                                    Password
+                                </label>
                             </div>
                             <div className="flex items-center justify-between">
                                 <button
