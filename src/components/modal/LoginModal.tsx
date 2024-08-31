@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { login, register } from '@/libs/auth';
 
+import { motion, AnimatePresence } from 'framer-motion';
+
 const LoginModal = () => {
     const dispatch = useDispatch();
     const ui = useSelector((state: RootState) => state.ui);
@@ -60,9 +62,12 @@ const LoginModal = () => {
     };
 
     return (
-        <>
+        <AnimatePresence>
             {ui.isLoginModalOpen && (
-                <div
+                <motion.div
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -50 }}
                     className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
                     onClick={handleBackgroundClick}
                 >
@@ -171,9 +176,9 @@ const LoginModal = () => {
                             </div>
                         </form>
                     </div>
-                </div>
+                </motion.div>
             )}
-        </>
+        </AnimatePresence>
     );
 };
 
