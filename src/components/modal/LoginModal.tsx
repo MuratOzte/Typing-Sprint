@@ -7,6 +7,7 @@ import { login, register } from '@/libs/auth';
 import Alerts from '../common/Alert';
 
 import { motion, AnimatePresence } from 'framer-motion';
+import ModalHeader from './ModalHeader';
 
 const LoginModal = () => {
     const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const LoginModal = () => {
         username: '',
         password: '',
     });
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState<string | null>('');
 
     const closeModal = () => {
         dispatch(uiSlice.actions.setIsLoginModalOpen(false));
@@ -43,7 +44,7 @@ const LoginModal = () => {
 
     const submitHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        setErrorMessage('');
+        setErrorMessage(null);
         const { name, username, password } = inputValues;
 
         if (isRegistering && (!name || !username || !password)) {
@@ -62,7 +63,7 @@ const LoginModal = () => {
                 await login(username, password);
                 console.log('Logged in successfully');
             }
-            setErrorMessage(''); // Clear the error message after successful registration/login
+            setErrorMessage(null); // Clear the error message after successful registration/login
         } catch (error) {
             console.error(
                 isRegistering ? 'Registration error:' : 'Login error:',
@@ -85,18 +86,11 @@ const LoginModal = () => {
                     onClick={handleBackgroundClick}
                 >
                     <div className="bg-slate-300 rounded-lg p-6 max-w-lg w-full">
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-xl font-semibold text-slate-700">
-                                {isRegistering ? 'Register' : 'Login'}
-                            </h2>
-                            <button
-                                onClick={closeModal}
-                                className="text-gray-600 hover:text-gray-900"
-                            >
-                                &#x2715; {/* Close icon */}
-                            </button>
-                        </div>
-                        {errorMessage && <Alerts message={errorMessage} />}
+                        <ModalHeader
+                            closeModal={closeModal}
+                            isRegistering={isRegistering}
+                        />
+
                         <form>
                             {isRegistering && (
                                 <div className="relative my-8">
@@ -189,6 +183,7 @@ const LoginModal = () => {
                                 </button>
                             </div>
                         </form>
+                        {errorMessage && <Alerts message={errorMessage} />}
                     </div>
                 </motion.div>
             )}

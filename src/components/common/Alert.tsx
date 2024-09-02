@@ -1,12 +1,7 @@
+import { AlertProps } from '@/types/types';
 import { useState } from 'react';
 
 import React from 'react';
-
-interface AlertProps {
-    type: string;
-    message: string;
-    onClose: () => void;
-}
 
 const Alert: React.FC<AlertProps> = ({ type, message, onClose }) => {
     const alertStyles: {
@@ -103,7 +98,7 @@ const Alerts: React.FC<any> = ({ message }) => {
     const [showAlert, setShowAlert] = useState(true);
 
     return (
-        <div>
+        <div className="mt-5">
             {showAlert && (
                 <Alert
                     type="danger"

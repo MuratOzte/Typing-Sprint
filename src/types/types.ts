@@ -59,4 +59,13 @@ export interface useInputColorProps {
     currentWord: string;
 }
 
+export interface ModalHeaderProps {
+    isRegistering: boolean;
+    closeModal: () => void;
+}
 
+export interface AlertProps {
+    type: string;
+    message: string;
+    onClose: () => void;
+}
