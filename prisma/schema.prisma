@@ -26,10 +26,10 @@ model User {
 
 model UserStats {
     id              String @id @default(auto()) @map("_id") @db.ObjectId
-    totalTypedWords Int
-    accuracy        Float
-    highestScore    Int
-    averageScore    Float
+    totalTypedWords Int    @default(0)
+    accuracy        Float  @default(0)
+    highestScore    Int    @default(0)
+    averageScore    Float  @default(0)
 
     userId String @unique @db.ObjectId
     user   User   @relation(fields: [userId], references: [id])

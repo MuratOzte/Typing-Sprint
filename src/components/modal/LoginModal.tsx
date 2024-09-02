@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { login, register } from '@/libs/auth';
 
+import Alerts from '../common/Alert';
+
 import { motion, AnimatePresence } from 'framer-motion';
 
 const LoginModal = () => {
@@ -16,6 +18,7 @@ const LoginModal = () => {
         username: '',
         password: '',
     });
+    const [errorMessage, setErrorMessage] = useState('');
 
     const closeModal = () => {
         dispatch(uiSlice.actions.setIsLoginModalOpen(false));
@@ -40,24 +43,34 @@ const LoginModal = () => {
 
     const submitHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        if (isRegistering) {
-            try {
-                await register(
-                    inputValues.name,
-                    inputValues.username,
-                    inputValues.password
-                );
+        setErrorMessage('');
+        const { name, username, password } = inputValues;
+
+        if (isRegistering && (!name || !username || !password)) {
+            setErrorMessage('Please fill in all the fields to register.');
+            return;
+        } else if (!isRegistering && (!username || !password)) {
+            setErrorMessage('Please fill in all the fields to log in.');
+            return;
+        }
+
+        try {
+            if (isRegistering) {
+                await register(name, username, password);
                 console.log('Registered successfully');
-            } catch (error) {
-                console.error('Registration error:', error);
-            }
-        } else {
-            try {
-                await login(inputValues.username, inputValues.password);
+            } else {
+                await login(username, password);
                 console.log('Logged in successfully');
-            } catch (error) {
-                console.error('Login error:', error);
             }
+            setErrorMessage(''); // Clear the error message after successful registration/login
+        } catch (error) {
+            console.error(
+                isRegistering ? 'Registration error:' : 'Login error:',
+                error
+            );
+            setErrorMessage(
+                isRegistering ? 'Registration failed.' : 'Login failed.'
+            );
         }
     };
 
@@ -83,6 +96,7 @@ const LoginModal = () => {
                                 &#x2715; {/* Close icon */}
                             </button>
                         </div>
+                        {errorMessage && <Alerts message={errorMessage} />}
                         <form>
                             {isRegistering && (
                                 <div className="relative my-8">
