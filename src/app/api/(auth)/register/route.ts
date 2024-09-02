@@ -1,8 +1,10 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
+const JWT_SECRET = process.env.JWT_SECRET ?? 'default-secret';
 
 export async function POST(req: NextRequest) {
     try {
@@ -30,11 +32,22 @@ export async function POST(req: NextRequest) {
 
         const hashedPassword = await bcrypt.hash(data.password, 10);
 
+        const token = jwt.sign(
+            {
+                id: data.id,
+                email: data.email,
+                name: data.name,
+            },
+            JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
         const newUser = await prisma.user.create({
             data: {
                 name: data.name || 'Anonymous',
                 email: data.email,
                 password: hashedPassword,
+                token: token,
             },
         });
 
@@ -46,6 +59,7 @@ export async function POST(req: NextRequest) {
                 name: newUser.name,
                 createdAt: newUser.createdAt,
                 updatedAt: newUser.updatedAt,
+                token: newUser.token,
             },
         });
     } catch (error) {

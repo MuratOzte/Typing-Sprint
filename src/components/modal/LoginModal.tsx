@@ -3,6 +3,7 @@ import { RootState } from '@/store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { login, register } from '@/libs/auth';
+import Loading from '../common/Loading';
 
 import Alerts from '../common/Alert';
 
@@ -12,6 +13,8 @@ import ModalHeader from './ModalHeader';
 const LoginModal = () => {
     const dispatch = useDispatch();
     const ui = useSelector((state: RootState) => state.ui);
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const [isRegistering, setIsRegistering] = useState(false);
     const [inputValues, setInputValues] = useState({
@@ -55,20 +58,25 @@ const LoginModal = () => {
             return;
         }
 
+        setIsLoading(true);
+
         try {
             if (isRegistering) {
-                await register(name, username, password);
-                console.log('Registered successfully');
+                const response = await register(name, username, password);
+                setIsLoading(false);
+                console.log(response);
             } else {
-                await login(username, password);
-                console.log('Logged in successfully');
+                const response = await login(username, password);
+                setIsLoading(false);
+                console.log(response);
             }
-            setErrorMessage(null); // Clear the error message after successful registration/login
+            setErrorMessage(null);
         } catch (error) {
             console.error(
                 isRegistering ? 'Registration error:' : 'Login error:',
                 error
             );
+            setIsLoading(false);
             setErrorMessage(
                 isRegistering ? 'Registration failed.' : 'Login failed.'
             );
@@ -160,7 +168,13 @@ const LoginModal = () => {
                                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                     onClick={submitHandler}
                                 >
-                                    {isRegistering ? 'Register' : 'Login'}
+                                    {isLoading ? (
+                                        <Loading />
+                                    ) : isRegistering ? (
+                                        'Register'
+                                    ) : (
+                                        'Login'
+                                    )}
                                 </button>
                                 <a
                                     href="#"

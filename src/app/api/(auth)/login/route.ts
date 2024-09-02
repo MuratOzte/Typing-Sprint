@@ -37,8 +37,13 @@ export async function POST(req: NextRequest) {
         console.log('User authenticated successfully');
 
         return NextResponse.json({
-            message: 'Success',
-            data: 'User authenticated',
+            data: {
+                id: user.id,
+                email: user.email,
+                name: user.name,
+                token: user.token,
+            },
+            message: 'User authenticated',
         });
     } catch (error) {
         console.error('Error in POST handler:', error);
