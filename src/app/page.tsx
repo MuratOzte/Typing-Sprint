@@ -13,6 +13,7 @@ import runSlice from '@/store/slices/runSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import LoginModal from '@/components/modal/LoginModal';
+import userSlice from '@/store/slices/userSlice';
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -42,6 +43,12 @@ export default function Home() {
             setWord('');
         }
     }, [trueCount, falseCount, run.isFinished]);
+
+    useEffect(() => {
+        dispatch(
+            userSlice.actions.setUser({ token: localStorage.getItem('token') })
+        );
+    }, [localStorage.getItem('token')]);
 
     return (
         <div className="w-full flex">

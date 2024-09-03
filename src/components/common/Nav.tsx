@@ -3,12 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/store/store';
 import uiSlice from '@/store/slices/uiSlice';
 import runSlice from '@/store/slices/runSlice';
+import userSlice from '@/store/slices/userSlice';
 
 const Nav = () => {
     const dispatch = useDispatch();
 
     const ui = useSelector((state: RootState) => state.ui);
     const run = useSelector((state: RootState) => state.run);
+    const user = useSelector((state: RootState) => state.user);
 
     const toggleLanguage = (lang: 'tr' | 'en') => {
         dispatch(uiSlice.actions.setLanguage(lang));
@@ -21,6 +23,11 @@ const Nav = () => {
 
     const loginToggleHandler = () => {
         dispatch(uiSlice.actions.setIsLoginModalOpen(!ui.isLoginModalOpen));
+    };
+
+    const logoutHandler = () => {
+        dispatch(userSlice.actions.resetUser());
+        localStorage.removeItem('token');
     };
 
     return (
@@ -53,14 +60,26 @@ const Nav = () => {
                     {ui.language === 'tr' ? 'Tekrar Oyna' : 'Play Again'}
                 </button>
             )}
-            <div className="w-1/3 flex justify-center">
-                <button
-                    onClick={loginToggleHandler}
-                    className="text-white uppercase bg-gray-500 px-4 py-2 rounded-lg shadow-md hover:bg-gray-500 transition duration-300 ease-in-out transform hover:scale-105"
-                >
-                    {ui.language === 'tr' ? 'Giriş Yap' : 'Login'}
-                </button>
-            </div>
+            {!user.token && (
+                <div className="w-1/3 flex justify-center">
+                    <button
+                        onClick={loginToggleHandler}
+                        className="text-white uppercase bg-gray-500 px-4 py-2 rounded-lg shadow-md hover:bg-gray-500 transition duration-300 ease-in-out transform hover:scale-105"
+                    >
+                        {ui.language === 'tr' ? 'Giriş Yap' : 'Login'}
+                    </button>
+                </div>
+            )}
+            {user.token && (
+                <div className="w-1/3 flex justify-center">
+                    <button
+                        onClick={logoutHandler}
+                        className="text-white uppercase bg-gray-500 px-4 py-2 rounded-lg shadow-md hover:bg-gray-500 transition duration-300 ease-in-out transform hover:scale-105"
+                    >
+                        {ui.language === 'tr' ? 'Çıkış Yap' : 'Logout'}
+                    </button>
+                </div>
+            )}
         </div>
     );
 };

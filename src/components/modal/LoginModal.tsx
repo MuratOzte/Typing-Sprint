@@ -5,6 +5,7 @@ import Alerts from '../common/Alert';
 import useLoginModalHandlers from '@/hooks/useLoginModalHandlers';
 import { AnimatePresence, motion } from 'framer-motion';
 import ModalHeader from './ModalHeader';
+import { useEffect } from 'react';
 
 const LoginModal = () => {
     const {

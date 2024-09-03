@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import uiSlice from '@/store/slices/uiSlice';
+import userSlice from '@/store/slices/userSlice';
 import { RootState } from '@/store/store';
 import { login, register } from '@/libs/auth';
 
@@ -63,6 +64,8 @@ const useLoginModalHandlers = () => {
                 setIsLoading(false);
                 console.log(response);
                 localStorage.setItem('token', response.data.token);
+                dispatch(userSlice.actions.setUser(response.data))
+
                 dispatch(uiSlice.actions.setIsLoginModalOpen(false));
             }
             setErrorMessage(null);
