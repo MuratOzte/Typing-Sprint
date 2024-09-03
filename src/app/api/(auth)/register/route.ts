@@ -50,6 +50,15 @@ export async function POST(req: NextRequest) {
                 token: token,
             },
         });
+        await prisma.userStats.create({
+            data: {
+                accuracy: 0,
+                averageScore: 0,
+                highestScore: 0,
+                totalTypedWords: 0,
+                userId: newUser.id,
+            },
+        });
 
         return NextResponse.json({
             message: 'User registered successfully',

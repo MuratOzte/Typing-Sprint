@@ -73,7 +73,7 @@ const Nav = () => {
             )}
             {user.token && (
                 <div className="w-1/3 flex justify-center items-center">
-                    <Avatar name={user.name} rank={50} language='en' logoutHandler={logoutHandler} />
+                    <Avatar name={user.name} rank={50} language={ui.language} logoutHandler={logoutHandler} />
                 </div>
             )}
         </div>

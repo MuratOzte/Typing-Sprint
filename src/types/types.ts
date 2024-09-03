@@ -77,3 +77,10 @@ export interface AvatarProps {
     logoutHandler: () => void;
     language: string;
 }
+
+export interface Stats {
+    totalTypedWords: number;
+    accuracy: number;
+    highestScore: number;
+    averageScore: number;
+}
