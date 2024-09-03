@@ -8,7 +8,9 @@ const Statistics = () => {
     const ui = useSelector((state: RootState) => state.ui);
     const user = useSelector((state: RootState) => state.user);
 
-    const { stats, isAuth, isLoading } = useStats(user.id);
+    const { stats, isAuth, isLoading } = useStats();
+
+    console.log(stats)
 
     return (
         <div className="w-full mx-auto bg-slate-900 flex items-center flex-col">

@@ -2,6 +2,7 @@ export const getStats = async (id: string | null) => {
     if (!id) {
         throw new Error('User ID is missing');
     }
+    console.log('id:', id);
     try {
         const response = await fetch('http://localhost:3000/api/get-stats', {
             method: 'POST',

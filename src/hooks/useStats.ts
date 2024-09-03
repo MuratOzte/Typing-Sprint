@@ -5,7 +5,7 @@ import { Stats } from '@/types/types';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 
-export const useStats = (userId: string | null) => {
+export const useStats = () => {
     const [stats, setStats] = useState<Stats | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isAuth, setIsAuth] = useState<boolean>(false);
@@ -22,11 +22,12 @@ export const useStats = (userId: string | null) => {
     }, [user.id]);
 
     useEffect(() => {
-        if (userId) {
+        if (user.id) {
             const fetchStats = async () => {
                 try {
                     setIsLoading(true);
-                    const data = await getStats(userId);
+                    console.log('user.id:', user.id);
+                    const data = await getStats(user.id);
                     setStats(data.stats);
                     setIsAuth(true);
                     setIsLoading(false);
@@ -39,7 +40,7 @@ export const useStats = (userId: string | null) => {
 
             fetchStats();
         }
-    }, [userId, run.isFinished]);
+    }, [user.id, run.isFinished]);
 
     return { stats, isAuth, isLoading };
 };
