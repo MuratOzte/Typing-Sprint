@@ -1,87 +1,25 @@
-import uiSlice from '@/store/slices/uiSlice';
-import { RootState } from '@/store/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { login, register } from '@/libs/auth';
 import Loading from '../common/Loading';
 
 import Alerts from '../common/Alert';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import useLoginModalHandlers from '@/hooks/useLoginModalHandlers';
+import { AnimatePresence, motion } from 'framer-motion';
 import ModalHeader from './ModalHeader';
 
 const LoginModal = () => {
-    const dispatch = useDispatch();
-    const ui = useSelector((state: RootState) => state.ui);
-
-    const [isLoading, setIsLoading] = useState(false);
-
-    const [isRegistering, setIsRegistering] = useState(false);
-    const [inputValues, setInputValues] = useState({
-        name: '',
-        username: '',
-        password: '',
-    });
-    const [errorMessage, setErrorMessage] = useState<string | null>('');
-
-    const closeModal = () => {
-        dispatch(uiSlice.actions.setIsLoginModalOpen(false));
-    };
-
-    const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (e.target === e.currentTarget) {
-            closeModal();
-        }
-    };
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValues({
-            ...inputValues,
-            [e.target.id]: e.target.value,
-        });
-    };
-
-    const isLabelActive = (input: string) => {
-        return inputValues[input as keyof typeof inputValues] !== '';
-    };
-
-    const submitHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        setErrorMessage(null);
-        const { name, username, password } = inputValues;
-
-        if (isRegistering && (!name || !username || !password)) {
-            setErrorMessage('Please fill in all the fields to register.');
-            return;
-        } else if (!isRegistering && (!username || !password)) {
-            setErrorMessage('Please fill in all the fields to log in.');
-            return;
-        }
-
-        setIsLoading(true);
-
-        try {
-            if (isRegistering) {
-                const response = await register(name, username, password);
-                setIsLoading(false);
-                console.log(response);
-            } else {
-                const response = await login(username, password);
-                setIsLoading(false);
-                console.log(response);
-            }
-            setErrorMessage(null);
-        } catch (error) {
-            console.error(
-                isRegistering ? 'Registration error:' : 'Login error:',
-                error
-            );
-            setIsLoading(false);
-            setErrorMessage(
-                isRegistering ? 'Registration failed.' : 'Login failed.'
-            );
-        }
-    };
+    const {
+        ui,
+        isLoading,
+        isRegistering,
+        inputValues,
+        errorMessage,
+        handleBackgroundClick,
+        handleInputChange,
+        isLabelActive,
+        submitHandler,
+        closeModal,
+        setIsRegistering,
+    } = useLoginModalHandlers();
 
     return (
         <AnimatePresence>
@@ -165,7 +103,7 @@ const LoginModal = () => {
                             <div className="flex items-center justify-between mb-4">
                                 <button
                                     type="submit"
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    className="bg-blue-500 w-36 h-12 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                     onClick={submitHandler}
                                 >
                                     {isLoading ? (
