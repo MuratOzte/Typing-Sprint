@@ -44,12 +44,6 @@ export default function Home() {
         }
     }, [trueCount, falseCount, run.isFinished]);
 
-    useEffect(() => {
-        dispatch(
-            userSlice.actions.setUser({ token: localStorage.getItem('token') })
-        );
-    }, [localStorage.getItem('token')]);
-
     return (
         <div className="w-full flex">
             <LoginModal />

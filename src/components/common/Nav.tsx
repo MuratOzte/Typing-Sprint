@@ -4,6 +4,7 @@ import { RootState } from '@/store/store';
 import uiSlice from '@/store/slices/uiSlice';
 import runSlice from '@/store/slices/runSlice';
 import userSlice from '@/store/slices/userSlice';
+import Avatar from './Avatar';
 
 const Nav = () => {
     const dispatch = useDispatch();
@@ -71,13 +72,8 @@ const Nav = () => {
                 </div>
             )}
             {user.token && (
-                <div className="w-1/3 flex justify-center">
-                    <button
-                        onClick={logoutHandler}
-                        className="text-white uppercase bg-gray-500 px-4 py-2 rounded-lg shadow-md hover:bg-gray-500 transition duration-300 ease-in-out transform hover:scale-105"
-                    >
-                        {ui.language === 'tr' ? 'Çıkış Yap' : 'Logout'}
-                    </button>
+                <div className="w-1/3 flex justify-center items-center">
+                    <Avatar name={user.name} rank={50} language='en' logoutHandler={logoutHandler} />
                 </div>
             )}
         </div>

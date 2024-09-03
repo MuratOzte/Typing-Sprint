@@ -69,3 +69,11 @@ export interface AlertProps {
     message: string;
     onClose: () => void;
 }
+
+export interface AvatarProps {
+    img?: string;
+    name: string | null;
+    rank: number | null;
+    logoutHandler: () => void;
+    language: string;
+}
