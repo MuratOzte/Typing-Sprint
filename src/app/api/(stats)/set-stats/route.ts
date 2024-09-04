@@ -7,6 +7,18 @@ export async function POST(req: NextRequest) {
     try {
         const requestBody = await req.json();
         console.log('deneme', requestBody);
+
+        const currentStats = await prisma.userStats.findUnique({
+            where: {
+                id: requestBody.id,
+            },
+        });
+
+        const newHighestScore =
+            requestBody.highestScore > (currentStats?.highestScore || 0)
+                ? requestBody.highestScore
+                : currentStats?.highestScore;
+
         const stats = await prisma.userStats.update({
             where: {
                 id: requestBody.id,
@@ -19,8 +31,12 @@ export async function POST(req: NextRequest) {
                     increment: requestBody.totalFalseWords,
                 },
                 totalTypedWords: {
+                    increment: requestBody.totalTypedWords,
+                },
+                totalRun: {
                     increment: 1,
                 },
+                highestScore: newHighestScore,
             },
         });
 
