@@ -52,10 +52,11 @@ export async function POST(req: NextRequest) {
         });
         await prisma.userStats.create({
             data: {
-                accuracy: 0,
-                averageScore: 0,
                 highestScore: 0,
                 totalTypedWords: 0,
+                totalTrueWords: 0,
+                totalFalseWords: 0,
+                totalRun: 0,
                 userId: newUser.id,
             },
         });

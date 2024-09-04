@@ -80,8 +80,8 @@ export interface AvatarProps {
 
 export interface Stats {
     totalTypedWords: number;
-    accuracy: string;
     highestScore: number;
-    averageScore: number;
+    totalTrueWords: number;
+    totalFalseWords: number;
+    totalRun: number;
 }
-

@@ -28,8 +28,9 @@ model User {
 model userStats {
     id              String @id @default(auto()) @map("_id") @db.ObjectId
     userId          String
-    accuracy        Int
-    averageScore    Int
+    totalTrueWords  Int
+    totalFalseWords Int
+    totalRun        Int
     highestScore    Int
     totalTypedWords Int
 }

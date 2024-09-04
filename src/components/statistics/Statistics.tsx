@@ -3,14 +3,30 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { useStats } from '@/hooks/useStats';
 import { FaLock } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
 
 const Statistics = () => {
     const ui = useSelector((state: RootState) => state.ui);
     const user = useSelector((state: RootState) => state.user);
+    const [accuracy, setAccuracy] = useState(0);
+    const [averageScore, setAverageScore] = useState(0);
 
     const { stats, isAuth, isLoading } = useStats();
 
-    console.log(stats)
+    console.log(stats);
+
+    useEffect(() => {
+        if (stats?.totalTypedWords == 0 || stats?.totalRun == 0) {
+            setAccuracy(0);
+            setAverageScore(0);
+            return;
+        }
+        if (stats) {
+            console.log(stats.totalTypedWords, stats.totalTrueWords);
+            setAccuracy((stats?.totalTrueWords / stats.totalTypedWords) * 100);
+            setAverageScore(stats.totalTypedWords / stats.totalRun);
+        }
+    }, [stats]);
 
     return (
         <div className="w-full mx-auto bg-slate-900 flex items-center flex-col">
@@ -34,7 +50,7 @@ const Statistics = () => {
                                 {ui.language === 'en'
                                     ? 'Accuracy'
                                     : 'Doğruluk Oranı'}
-                                : {stats ? stats.accuracy : 'Loading...'}
+                                : {stats ? accuracy : 'Loading...'}
                             </span>
                         </li>
                         <li className="p-3 bg-slate-400 hover:bg-slate-500 text-gray-900 font-semibold rounded-lg mb-2 transition-colors duration-300 pl-4">
@@ -50,7 +66,7 @@ const Statistics = () => {
                                 {ui.language === 'en'
                                     ? 'Average Score'
                                     : 'Ortalama Skor'}
-                                : {stats ? stats.averageScore : 'Loading...'}
+                                : {stats ? averageScore : 'Loading...'}
                             </span>
                         </li>
                     </ul>
