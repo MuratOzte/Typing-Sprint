@@ -13,7 +13,6 @@ const Statistics = () => {
 
     const { stats, isAuth, isLoading } = useStats();
 
-    console.log(stats);
 
     useEffect(() => {
         if (stats?.totalTypedWords == 0 || stats?.totalRun == 0) {

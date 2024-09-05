@@ -20,17 +20,19 @@ export const useStats = () => {
             setIsAuth(false);
         }
     }, [user.id]);
-
+    //!BUG 
     useEffect(() => {
+        console.log('run.isFinished:', run.isFinished);
         if (user.id) {
             const fetchStats = async () => {
                 try {
                     setIsLoading(true);
                     console.log('user.id:', user.id);
                     const data = await getStats(user.id);
-                    setStats(data.stats);
+                    console.log('data:', data, 'stats:', run.isFinished);
                     setIsAuth(true);
                     setIsLoading(false);
+                    setStats(data.stats);
                 } catch (error) {
                     setIsLoading(false);
                     console.error(error);
