@@ -8,27 +8,24 @@ export async function POST(req: NextRequest) {
         const requestBody = await req.json();
         console.log('deneme', requestBody);
 
-        const currentStats = await prisma.userStats.findUnique({
+        const currentStats = await prisma.userStats.findFirst({
             where: {
-                id: requestBody.id,
+                userId: requestBody.id,
             },
         });
 
-        const newHighestScore =
-            requestBody.highestScore > (currentStats?.highestScore || 0)
-                ? requestBody.highestScore
-                : currentStats?.highestScore;
+        console.log('currentStats:', currentStats);
 
-        const stats = await prisma.userStats.update({
+        const stats = await prisma.userStats.updateMany({
             where: {
-                id: requestBody.id,
+                userId: requestBody.id,
             },
             data: {
                 totalTrueWords: {
-                    increment: requestBody.totalTrueWords,
+                    increment: requestBody.trueWord,
                 },
                 totalFalseWords: {
-                    increment: requestBody.totalFalseWords,
+                    increment: requestBody.falseWord,
                 },
                 totalTypedWords: {
                     increment: requestBody.totalTypedWords,
@@ -36,7 +33,7 @@ export async function POST(req: NextRequest) {
                 totalRun: {
                     increment: 1,
                 },
-                highestScore: newHighestScore,
+                highestScore: requestBody.score,
             },
         });
 

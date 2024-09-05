@@ -40,7 +40,7 @@ export const useStats = () => {
 
             fetchStats();
         }
-    }, [user.id, run.isFinished]);
+    }, [user.id, run.isFinished, run.trueCount, run.falseCount, run.wpm]);
 
     return { stats, isAuth, isLoading };
 };

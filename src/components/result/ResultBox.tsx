@@ -3,7 +3,36 @@ import Details from './Details';
 import Statistics from './Statistics';
 import WpmBox from './WpmBox';
 
+import { setStats } from '@/libs/stats';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
+import { useEffect } from 'react';
+
+import { useDispatch } from 'react-redux';
+import runSlice from '@/store/slices/runSlice';
+
 const ResultBox = () => {
+    const run = useSelector((state: RootState) => state.run);
+    const user = useSelector((state: RootState) => state.user);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (!run.isFinished) return;
+
+        dispatch(runSlice.actions.setIsFinished(true));
+
+        const response = setStats(
+            user.id,
+            run.trueCount,
+            run.falseCount,
+            run.trueCount + run.falseCount,
+            run.wpm
+        );
+
+        console.log('response result:', response);
+    }, [run.isFinished, run.trueCount, run.falseCount, run.wpm, user.id]);
+
     return (
         <div className="w-6/12 h-screen relative bg-slate-900">
             <Nav />

@@ -50,7 +50,7 @@ const Statistics = () => {
                                 {ui.language === 'en'
                                     ? 'Accuracy'
                                     : 'Doğruluk Oranı'}
-                                : {stats ? accuracy : 'Loading...'}
+                                : {stats ? accuracy.toFixed(2) + '%' : 'Loading...'}
                             </span>
                         </li>
                         <li className="p-3 bg-slate-400 hover:bg-slate-500 text-gray-900 font-semibold rounded-lg mb-2 transition-colors duration-300 pl-4">
@@ -66,7 +66,7 @@ const Statistics = () => {
                                 {ui.language === 'en'
                                     ? 'Average Score'
                                     : 'Ortalama Skor'}
-                                : {stats ? averageScore : 'Loading...'}
+                                : {stats ? averageScore.toFixed(2) : 'Loading...'}
                             </span>
                         </li>
                     </ul>
