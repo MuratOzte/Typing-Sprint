@@ -30,7 +30,7 @@ export const setStats = async (
     trueWord: number,
     falseWord: number,
     totalTypedWords: number,
-    score: number
+    score: number,
 ) => {
     if (!id) {
         throw new Error('User ID is missing');

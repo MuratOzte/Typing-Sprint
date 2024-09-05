@@ -34,6 +34,9 @@ export async function POST(req: NextRequest) {
                     increment: 1,
                 },
                 highestScore: requestBody.score,
+                totalWPM: {
+                    increment: requestBody.score,
+                },
             },
         });
 

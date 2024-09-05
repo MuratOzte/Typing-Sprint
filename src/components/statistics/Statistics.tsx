@@ -24,7 +24,7 @@ const Statistics = () => {
         if (stats) {
             console.log(stats.totalTypedWords, stats.totalTrueWords);
             setAccuracy((stats?.totalTrueWords / stats.totalTypedWords) * 100);
-            setAverageScore(stats.totalTypedWords / stats.totalRun);
+            setAverageScore(stats.totalWPM / stats.totalRun);
         }
     }, [stats]);
 

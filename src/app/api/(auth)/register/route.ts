@@ -58,6 +58,7 @@ export async function POST(req: NextRequest) {
                 totalFalseWords: 0,
                 totalRun: 0,
                 userId: newUser.id,
+                totalWPM: 0,
             },
         });
 

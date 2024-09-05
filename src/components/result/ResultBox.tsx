@@ -27,7 +27,7 @@ const ResultBox = () => {
             run.trueCount,
             run.falseCount,
             run.trueCount + run.falseCount,
-            run.wpm
+            run.wpm,
         );
 
         console.log('response result:', response);

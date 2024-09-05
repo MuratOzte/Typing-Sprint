@@ -84,4 +84,5 @@ export interface Stats {
     totalTrueWords: number;
     totalFalseWords: number;
     totalRun: number;
+    totalWPM: number;
 }
