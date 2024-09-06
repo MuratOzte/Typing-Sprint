@@ -39,12 +39,20 @@ const runSlice = createSlice({
                 state.trueCount + state.falseCount > 0
                     ? Math.floor(state.trueCount * temp)
                     : 0;
+            state.runID = Math.random().toString(36).substr(2, 9);
         },
         setTime(state, action) {
             state.time = action.payload;
         },
         setRunID(state) {
             state.runID = Math.random().toString(36).substr(2, 9);
+        },
+        resetRun(state) {
+            state.isFinished = false;
+            state.trueCount = 0;
+            state.falseCount = 0;
+            state.wpm = 0;
+            state.time = 0;
         },
     },
 });

@@ -21,21 +21,29 @@ const ResultBox = () => {
     useEffect(() => {
         if (!run.isFinished || !user.id) return;
 
-        dispatch(runSlice.actions.setIsFinished(true));
+        console.log(run.runID, run.isFinished, user.id, 'ne tetikliyor');
 
-        const stats = async () => {
-            console.log('çalıştı', run.trueCount, run.falseCount, run.wpm);
-            const response = await setStats(
-                user.id,
-                run.trueCount,
-                run.falseCount,
-                run.trueCount + run.falseCount,
-                run.wpm
-            );
-            console.log(response, 'response');
-            dispatch(statsSlice.actions.setRun(response.stats));
-        };
-        stats();
+        const timeoutId = setTimeout(() => {
+            dispatch(runSlice.actions.setIsFinished(true));
+
+            const stats = async () => {
+                console.log('çalıştı', run.trueCount, run.falseCount, run.wpm);
+                const response = await setStats(
+                    user.id,
+                    run.trueCount,
+                    run.falseCount,
+                    run.trueCount + run.falseCount,
+                    run.wpm
+                );
+                dispatch(runSlice.actions.resetRun())
+                console.log(response, 'response');
+                dispatch(statsSlice.actions.setRun(response.stats));
+            };
+
+            stats();
+        }, 500);
+
+        return () => clearTimeout(timeoutId);
     }, [run.runID, run.isFinished, user.id]);
 
     return (

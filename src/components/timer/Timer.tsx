@@ -24,7 +24,6 @@ const Timer = ({
     useEffect(() => {
         setFixedSecond(formatTime(second));
         if (fixedSecond === '0:01') {
-            dispatch(runSlice.actions.setRunID());
             dispatch(runSlice.actions.setIsFinished(true));
         }
     }, [second]);
