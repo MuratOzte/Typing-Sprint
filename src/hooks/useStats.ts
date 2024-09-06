@@ -46,7 +46,7 @@ export const useStats = () => {
 
             fetchStats();
         }
-    }, [user.id, run.isFinished, run.trueCount, run.falseCount, run.wpm]);
+    }, [user.id, run.isFinished]);
 
     return { stats, isAuth, isLoading };
 };

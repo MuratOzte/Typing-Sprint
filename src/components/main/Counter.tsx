@@ -4,10 +4,14 @@ import { CounterProps } from '@/types/types';
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 const Counter: React.FC<CounterProps> = ({ trueCount, falseCount }) => {
     const [trueEffect, setTrueEffect] = useState(false);
     const [falseEffect, setFalseEffect] = useState(false);
+
+    const run = useSelector((state: RootState) => state.run);
 
     useEffect(() => {
         if (trueCount > 0) {
@@ -16,7 +20,7 @@ const Counter: React.FC<CounterProps> = ({ trueCount, falseCount }) => {
                 setTrueEffect(false);
             }, 200);
         }
-    }, [trueCount]);
+    }, [run.trueCount]);
 
     useEffect(() => {
         if (falseCount > 0) {
@@ -25,7 +29,7 @@ const Counter: React.FC<CounterProps> = ({ trueCount, falseCount }) => {
                 setFalseEffect(false);
             }, 200);
         }
-    }, [falseCount]);
+    }, [run.falseCount]);
 
     return (
         <div className=" py-2 px-3 bg-slate-400 rounded-md flex gap-5">
