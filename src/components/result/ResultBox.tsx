@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 import runSlice from '@/store/slices/runSlice';
+import statsSlice from '@/store/slices/statsSlice';
 
 const ResultBox = () => {
     const run = useSelector((state: RootState) => state.run);
@@ -22,15 +23,21 @@ const ResultBox = () => {
 
         dispatch(runSlice.actions.setIsFinished(true));
 
-        const response = setStats(
-            user.id,
-            run.trueCount,
-            run.falseCount,
-            run.trueCount + run.falseCount,
-            run.wpm,
-        );
+        const stats = async () => {
+            if (user.id) {
+                const response = await setStats(
+                    user.id,
+                    run.trueCount,
+                    run.falseCount,
+                    run.trueCount + run.falseCount,
+                    run.wpm
+                );
+                console.log(response, 'response');
+                dispatch(statsSlice.actions.setRun(response.stats));
+            }
+        };
 
-        console.log('response result:', response);
+        stats();
     }, [run.isFinished, run.trueCount, run.falseCount, run.wpm, user.id]);
 
     return (

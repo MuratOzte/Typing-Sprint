@@ -13,19 +13,24 @@ const Statistics = () => {
 
     const { stats, isAuth, isLoading } = useStats();
 
-
     useEffect(() => {
-        if (stats?.totalTypedWords == 0 || stats?.totalRun == 0) {
+        if ((stats?.totalTypedWords ?? 0) === 0 || (stats?.totalRun ?? 0) === 0) {
             setAccuracy(0);
             setAverageScore(0);
             return;
         }
+    
         if (stats) {
-            console.log(stats.totalTypedWords, stats.totalTrueWords);
-            setAccuracy((stats?.totalTrueWords / stats.totalTypedWords) * 100);
-            setAverageScore(stats.totalWPM / stats.totalRun);
+            const totalTrueWords = stats?.totalTrueWords ?? 0;
+            const totalTypedWords = stats?.totalTypedWords ?? 1; 
+            const totalRun = stats?.totalRun ?? 1; 
+            const totalWPM = stats?.totalWPM ?? 0;
+    
+            setAccuracy((totalTrueWords / totalTypedWords) * 100);
+            setAverageScore(totalWPM / totalRun);
         }
     }, [stats]);
+    
 
     return (
         <div className="w-full mx-auto bg-slate-900 flex items-center flex-col">
@@ -49,7 +54,10 @@ const Statistics = () => {
                                 {ui.language === 'en'
                                     ? 'Accuracy'
                                     : 'Doğruluk Oranı'}
-                                : {stats ? accuracy.toFixed(2) + '%' : 'Loading...'}
+                                :{' '}
+                                {stats
+                                    ? accuracy.toFixed(2) + '%'
+                                    : 'Loading...'}
                             </span>
                         </li>
                         <li className="p-3 bg-slate-400 hover:bg-slate-500 text-gray-900 font-semibold rounded-lg mb-2 transition-colors duration-300 pl-4">
@@ -65,7 +73,8 @@ const Statistics = () => {
                                 {ui.language === 'en'
                                     ? 'Average Score'
                                     : 'Ortalama Skor'}
-                                : {stats ? averageScore.toFixed(2) : 'Loading...'}
+                                :{' '}
+                                {stats ? averageScore.toFixed(2) : 'Loading...'}
                             </span>
                         </li>
                     </ul>

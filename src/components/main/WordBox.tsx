@@ -9,10 +9,6 @@ const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
     const [words, setWords] = useState<string[]>([]);
     const run = useSelector((state: RootState) => state.run);
 
-    useEffect(() => {
-        console.log('words', words);
-        console.log('typedWord', typedWord);
-    }, [words, typedWord]);
 
     useLayoutEffect(() => {
         const temp = [];

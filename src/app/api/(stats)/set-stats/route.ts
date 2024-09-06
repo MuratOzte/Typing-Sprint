@@ -16,9 +16,23 @@ export async function POST(req: NextRequest) {
 
         console.log('currentStats:', currentStats);
 
-        const stats = await prisma.userStats.updateMany({
+        if (currentStats?.id === null) {
+            return NextResponse.json(
+                { error: 'User not found' },
+                { status: 404 }
+            );
+        }
+
+        if (!currentStats) {
+            return NextResponse.json(
+                { error: 'User not found' },
+                { status: 404 }
+            );
+        }
+
+        const stats = await prisma.userStats.update({
             where: {
-                userId: requestBody.id,
+                id: currentStats.id,
             },
             data: {
                 totalTrueWords: {
@@ -39,7 +53,7 @@ export async function POST(req: NextRequest) {
                 },
             },
         });
-
+        console.log('asdasd', stats);
         return NextResponse.json({ stats: stats });
     } catch (error) {
         return NextResponse.json(
