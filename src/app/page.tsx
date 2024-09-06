@@ -26,7 +26,7 @@ export default function Home() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [time, setTime] = useState(60);
 
-    const { trueCount, falseCount } = useCount(typedWord, currentWord);
+    useCount(typedWord, currentWord);
     const { isTyped, inputColor } = useInputColor(word, currentWord);
 
     const modalToggleHandler = () => {
@@ -36,13 +36,11 @@ export default function Home() {
     useEffect(() => {
         if (run.isFinished) {
             dispatch(runSlice.actions.setIsFinished(true));
-            dispatch(runSlice.actions.setTrueCount(trueCount));
-            dispatch(runSlice.actions.setFalseCount(falseCount));
             setCurrentWord('');
             setTypedWord('');
             setWord('');
         }
-    }, [trueCount, falseCount, run.isFinished]);
+    }, [run.isFinished]);
 
     return (
         <div className="w-full flex">
@@ -54,7 +52,7 @@ export default function Home() {
                 <ResultBox />
             ) : (
                 <MainSection
-                    falseCount={falseCount}
+                    falseCount={run.falseCount}
                     inputColor={inputColor}
                     isModalOpen={isModalOpen}
                     isTyped={isTyped}
@@ -62,7 +60,7 @@ export default function Home() {
                     setCurrentWord={setCurrentWord}
                     setTime={setTime}
                     time={time}
-                    trueCount={trueCount}
+                    trueCount={run.trueCount}
                     typedWord={typedWord}
                     setTypedWord={setTypedWord}
                     setWord={setWord}

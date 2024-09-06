@@ -44,6 +44,7 @@ const LoginModal = () => {
                                     <input
                                         type="text"
                                         id="name"
+                                        autoFocus
                                         value={inputValues.name}
                                         onChange={handleInputChange}
                                         className="h-10 shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-500"

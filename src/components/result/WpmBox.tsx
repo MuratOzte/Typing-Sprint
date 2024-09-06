@@ -11,7 +11,7 @@ const WpmBox = () => {
     const ui = useSelector((state: RootState) => state.ui);
 
     useEffect(() => {
-        dispatch(runSlice.actions.setWpm());
+        dispatch(runSlice.actions.setRunID());
     }, [run.isFinished]);
 
     return (

@@ -19,27 +19,24 @@ const ResultBox = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (!run.isFinished) return;
+        if (!run.isFinished || !user.id) return;
 
         dispatch(runSlice.actions.setIsFinished(true));
 
         const stats = async () => {
-            if (user.id && run.isFinished) {
-                console.log('çalıştı');
-                const response = await setStats(
-                    user.id,
-                    run.trueCount,
-                    run.falseCount,
-                    run.trueCount + run.falseCount,
-                    run.wpm
-                );
-                console.log(response, 'response');
-                dispatch(statsSlice.actions.setRun(response.stats));
-            }
+            console.log('çalıştı', run.trueCount, run.falseCount, run.wpm);
+            const response = await setStats(
+                user.id,
+                run.trueCount,
+                run.falseCount,
+                run.trueCount + run.falseCount,
+                run.wpm
+            );
+            console.log(response, 'response');
+            dispatch(statsSlice.actions.setRun(response.stats));
         };
-
         stats();
-    }, [run.runID]);
+    }, [run.runID, run.isFinished, user.id]);
 
     return (
         <div className="w-6/12 h-screen relative bg-slate-900">
