@@ -25,7 +25,7 @@ const ResultBox = () => {
 
         const stats = async () => {
             if (user.id && run.isFinished) {
-                console.log('çalıştı')
+                console.log('çalıştı');
                 const response = await setStats(
                     user.id,
                     run.trueCount,
@@ -39,7 +39,7 @@ const ResultBox = () => {
         };
 
         stats();
-    }, [run.isFinished]);
+    }, [run.runID]);
 
     return (
         <div className="w-6/12 h-screen relative bg-slate-900">

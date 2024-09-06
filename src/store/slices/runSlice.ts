@@ -6,6 +6,7 @@ export interface run {
     falseCount: number;
     wpm: number;
     time: number;
+    runID?: string;
 }
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
     falseCount: 0,
     wpm: 0,
     time: 0,
+    runID: '',
 };
 
 const runSlice = createSlice({
@@ -40,6 +42,9 @@ const runSlice = createSlice({
         },
         setTime(state, action) {
             state.time = action.payload;
+        },
+        setRunID(state) {
+            state.runID = Math.random().toString(36).substr(2, 9);
         },
     },
 });
