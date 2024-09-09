@@ -19,6 +19,8 @@ const Nav = () => {
 
     const newGameHandler = () => {
         dispatch(uiSlice.actions.setIsRePlayButtonClicked(true));
+        dispatch(uiSlice.actions.setIsResultScreen(false));
+        dispatch(runSlice.actions.resetRun())
         dispatch(runSlice.actions.setIsFinished(false));
     };
 
@@ -73,7 +75,12 @@ const Nav = () => {
             )}
             {user.token && (
                 <div className="w-1/3 flex justify-center items-center">
-                    <Avatar name={user.name} rank={50} language={ui.language} logoutHandler={logoutHandler} />
+                    <Avatar
+                        name={user.name}
+                        rank={50}
+                        language={ui.language}
+                        logoutHandler={logoutHandler}
+                    />
                 </div>
             )}
         </div>

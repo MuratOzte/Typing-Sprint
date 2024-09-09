@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import LoginModal from '@/components/modal/LoginModal';
 import userSlice from '@/store/slices/userSlice';
+import uiSlice from '@/store/slices/uiSlice';
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -36,6 +37,7 @@ export default function Home() {
     useEffect(() => {
         if (run.isFinished) {
             dispatch(runSlice.actions.setIsFinished(true));
+            dispatch(uiSlice.actions.setIsResultScreen(true));
             setCurrentWord('');
             setTypedWord('');
             setWord('');
@@ -48,7 +50,7 @@ export default function Home() {
             <div className="w-3/12">
                 <LeaderBoard />
             </div>
-            {run.isFinished ? (
+            {ui.isResultScreen ? (
                 <ResultBox />
             ) : (
                 <MainSection

@@ -5,6 +5,7 @@ export interface ui {
     isLoggedIn: boolean;
     isRePlayButtonClicked: boolean;
     isLoginModalOpen: boolean;
+    isResultScreen: boolean;
 }
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
     isLoggedIn: false,
     isRePlayButtonClicked: false,
     isLoginModalOpen: false,
+    isResultScreen: false,
 };
 
 const uiSlice = createSlice({
@@ -29,6 +31,9 @@ const uiSlice = createSlice({
         },
         setIsLoginModalOpen(state, action) {
             state.isLoginModalOpen = action.payload;
+        },
+        setIsResultScreen(state, action) {
+            state.isResultScreen = action.payload;
         },
     },
 });
