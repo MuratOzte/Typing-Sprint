@@ -35,7 +35,7 @@ export default function Home() {
     };
 
     useEffect(() => {
-        if (run.isFinished) {
+        if (!run.isFinished) {
             dispatch(runSlice.actions.setIsFinished(true));
             dispatch(uiSlice.actions.setIsResultScreen(true));
             setCurrentWord('');

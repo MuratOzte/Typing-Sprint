@@ -7,13 +7,13 @@ import runSlice from '@/store/slices/runSlice';
 const useCount = (typedWord: string, currentWord: string) => {
     const dispatch = useDispatch();
 
-
     const run = useSelector((state: RootState) => state.run);
     const ui = useSelector((state: RootState) => state.ui);
 
     useEffect(() => {
         if (ui.isRePlayButtonClicked) {
             dispatch(uiSlice.actions.setIsRePlayButtonClicked(false));
+            dispatch(runSlice.actions.resetRun());
         }
     }, [ui.isRePlayButtonClicked]);
 
