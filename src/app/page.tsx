@@ -37,7 +37,8 @@ export default function Home() {
     useEffect(() => {
         if (!run.isFinished) {
             dispatch(runSlice.actions.setIsFinished(true));
-            dispatch(uiSlice.actions.setIsResultScreen(true));
+            console.log('Uef')
+            dispatch(uiSlice.actions.setIsResultScreen(false));
             setCurrentWord('');
             setTypedWord('');
             setWord('');

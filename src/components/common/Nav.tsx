@@ -18,9 +18,10 @@ const Nav = () => {
     };
 
     const newGameHandler = () => {
+        console.log('new game');
         dispatch(uiSlice.actions.setIsRePlayButtonClicked(true));
         dispatch(uiSlice.actions.setIsResultScreen(false));
-        dispatch(runSlice.actions.resetRun())
+        dispatch(runSlice.actions.resetRun());
         dispatch(runSlice.actions.setIsFinished(false));
     };
 
@@ -55,7 +56,7 @@ const Nav = () => {
                     />
                 </button>
             </div>
-            {run.isFinished && (
+            {ui.isResultScreen && (
                 <button
                     className="bg-green-600 px-4 py-2 rounded-md text-white hover:bg-green-700 transition-all ease duration-150 hover:scale-105"
                     onClick={newGameHandler}

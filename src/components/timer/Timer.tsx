@@ -4,6 +4,7 @@ import { TimerProps } from '@/types/types';
 
 import { useDispatch } from 'react-redux';
 import runSlice from '@/store/slices/runSlice';
+import uiSlice from '@/store/slices/uiSlice';
 
 const Timer = ({
     time = 60,
@@ -25,6 +26,7 @@ const Timer = ({
         setFixedSecond(formatTime(second));
         if (fixedSecond === '0:01') {
             dispatch(runSlice.actions.setIsFinished(true));
+            dispatch(uiSlice.actions.setIsResultScreen(true));
         }
     }, [second]);
 
