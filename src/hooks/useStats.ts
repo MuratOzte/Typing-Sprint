@@ -15,6 +15,7 @@ export const useStats = () => {
 
     const run = useSelector((state: RootState) => state.run);
     const user = useSelector((state: RootState) => state.user);
+    const ui = useSelector((state: RootState) => state.ui);
     const stats = useSelector((state: RootState) => state.stats);
 
     useEffect(() => {
@@ -46,7 +47,7 @@ export const useStats = () => {
 
             fetchStats();
         }
-    }, [user.id, run.isFinished]);
+    }, [user.id, ui.isResultScreen]);
 
     return { stats, isAuth, isLoading };
 };

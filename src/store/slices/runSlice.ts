@@ -48,7 +48,6 @@ const runSlice = createSlice({
             state.runID = Math.random().toString(36).substr(2, 9);
         },
         resetRun(state) {
-            state.isFinished = false;
             state.trueCount = 0;
             state.falseCount = 0;
             state.wpm = 0;

@@ -15,6 +15,7 @@ import statsSlice from '@/store/slices/statsSlice';
 const ResultBox = () => {
     const run = useSelector((state: RootState) => state.run);
     const user = useSelector((state: RootState) => state.user);
+    const ui = useSelector((state: RootState) => state.ui);
 
     const dispatch = useDispatch();
 
@@ -35,7 +36,6 @@ const ResultBox = () => {
                     run.trueCount + run.falseCount,
                     run.wpm
                 );
-                dispatch(runSlice.actions.resetRun())
                 console.log(response, 'response');
                 dispatch(statsSlice.actions.setRun(response.stats));
             };
@@ -44,7 +44,7 @@ const ResultBox = () => {
         }, 500);
 
         return () => clearTimeout(timeoutId);
-    }, [run.runID, run.isFinished, user.id]);
+    }, [user.id, ui.isResultScreen]);
 
     return (
         <div className="w-6/12 h-screen relative bg-slate-900">
