@@ -22,13 +22,10 @@ const ResultBox = () => {
     useEffect(() => {
         if (!run.isFinished || !user.id) return;
 
-        console.log(run.runID, run.isFinished, user.id, 'ne tetikliyor');
-
         const timeoutId = setTimeout(() => {
             dispatch(runSlice.actions.setIsFinished(true));
 
             const stats = async () => {
-                console.log('çalıştı', run.trueCount, run.falseCount, run.wpm);
                 const response = await setStats(
                     user.id,
                     run.trueCount,
@@ -36,7 +33,6 @@ const ResultBox = () => {
                     run.trueCount + run.falseCount,
                     run.wpm
                 );
-                console.log(response, 'response');
                 dispatch(statsSlice.actions.setRun(response.stats));
             };
 

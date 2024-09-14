@@ -32,9 +32,7 @@ export const useStats = () => {
             const fetchStats = async () => {
                 try {
                     setIsLoading(true);
-                    console.log('user.id:', user.id);
                     const data = await getStats(user.id);
-                    console.log('data:', data, 'stats:', run.isFinished);
                     setIsAuth(true);
                     setIsLoading(false);
                     dispatch(statsSlice.actions.setRun(data.stats));

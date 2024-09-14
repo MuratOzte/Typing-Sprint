@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 export async function POST(req: NextRequest) {
     try {
         const requestBody = await req.json();
-        console.log('deneme', requestBody);
 
         const currentStats = await prisma.userStats.findFirst({
             where: {
@@ -14,7 +13,6 @@ export async function POST(req: NextRequest) {
             },
         });
 
-        console.log('currentStats:', currentStats);
 
         if (currentStats?.id === null) {
             return NextResponse.json(
@@ -53,7 +51,6 @@ export async function POST(req: NextRequest) {
                 },
             },
         });
-        console.log('asdasd', stats);
         return NextResponse.json({ stats: stats });
     } catch (error) {
         return NextResponse.json(

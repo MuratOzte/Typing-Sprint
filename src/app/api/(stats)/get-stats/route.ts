@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 export async function POST(req: NextRequest) {
     try {
         const requestBody = await req.json();
-        console.log('deneme', requestBody);
         const stats = await prisma.userStats.findFirst({
             where: {
                 userId: requestBody.id,
