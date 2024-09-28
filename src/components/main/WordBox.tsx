@@ -1,4 +1,4 @@
-import { Words } from '@/data/words';
+import { Words, kelimeler } from '@/data/words';
 import { WordboxProps } from '@/types/types';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import Loading from '../common/Loading';
@@ -8,15 +8,28 @@ import { RootState } from '@/store/store';
 const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
     const [words, setWords] = useState<string[]>([]);
     const run = useSelector((state: RootState) => state.run);
-
+    const ui = useSelector((state: RootState) => state.ui);
 
     useLayoutEffect(() => {
         const temp = [];
-        for (let i = 1; i <= 110; i++) {
-            temp.push(Words[Math.floor(Math.random() * Words.length)]);
+        if (ui.language === 'tr') {
+            for (let i = 1; i <= 110; i++) {
+                temp.push(
+                    kelimeler[Math.floor(Math.random() * kelimeler.length)]
+                );
+            }
+            setWords(temp);
+            return;
         }
-        setWords(temp);
-    }, [run.isFinished]);
+        
+        if (ui.language === 'en') {
+            for (let i = 1; i <= 110; i++) {
+                temp.push(Words[Math.floor(Math.random() * Words.length)]);
+            }
+            setWords(temp);
+            return;
+        }
+    }, [run.isFinished, ui.language]);
 
     useEffect(() => {
         if (typedWord === '' || words.length === 0) return;
