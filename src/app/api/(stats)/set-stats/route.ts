@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
             },
         });
 
+        console.log(currentStats);
 
         if (currentStats?.id === null) {
             return NextResponse.json(
@@ -45,7 +46,10 @@ export async function POST(req: NextRequest) {
                 totalRun: {
                     increment: 1,
                 },
-                highestScore: requestBody.score,
+                highestScore:
+                    currentStats.highestScore < requestBody.score
+                        ? requestBody.score
+                        : currentStats.highestScore,
                 totalWPM: {
                     increment: requestBody.score,
                 },
