@@ -35,3 +35,10 @@ model userStats {
     totalTypedWords Int
     totalWPM        Int
 }
+
+model Leaderboard {
+    id       String @id @default(auto()) @map("_id") @db.ObjectId
+    userId   String
+    wpm      Int
+    date     DateTime @default(now())
+}
