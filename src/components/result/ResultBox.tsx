@@ -4,6 +4,7 @@ import Statistics from './Statistics';
 import WpmBox from './WpmBox';
 
 import { setStats } from '@/libs/stats';
+import { setLeaderboard } from '@/libs/leaderboard';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { useEffect } from 'react';
@@ -36,7 +37,17 @@ const ResultBox = () => {
                 dispatch(statsSlice.actions.setRun(response.stats));
             };
 
+            const leaderboard = async () => {
+                const response = await setLeaderboard(
+                    user.id,
+                    run.wpm,
+                    user.name
+                );
+                console.log('leaderboard:', response);
+            };
+
             stats();
+            leaderboard();
         }, 500);
 
         return () => clearTimeout(timeoutId);

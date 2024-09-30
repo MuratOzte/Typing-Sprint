@@ -6,47 +6,24 @@ const prisma = new PrismaClient();
 export async function POST(req: NextRequest) {
     try {
         const requestBody = await req.json();
+        console.log('requestBody:', requestBody);
 
-        const user = await prisma.user.findUnique({
-            where: {
-                id: requestBody.userId,
-            },
-        });
-
-        if (!user) {
-            return NextResponse.json(
-                { error: 'User not found' },
-                { status: 404 }
-            );
-        }
-
-        const userLeaderboard = await prisma.leaderboard.findFirst({
-            where: {
-                userId: requestBody.userId,
-            },
-        });
-
-        if (userLeaderboard) {
-            await prisma.leaderboard.update({
-                where: {
-                    id: userLeaderboard.id,
-                },
-                data: {
-                    wpm: requestBody.wpm,
-                },
-            });
-
-            return NextResponse.json({ leaderboard: 'leaderboard' });
-        }
-
-        const leaderBoard = await prisma.leaderboard.create({
-            data: {
-                userId: requestBody.userId,
+        const leaderboard = await prisma.leaderboard.upsert({
+            create: {
+                userId: requestBody.id,
                 wpm: requestBody.wpm,
+                userName: requestBody.userName,
+            },
+            update: {
+                wpm: requestBody.wpm,
+                userName: requestBody.userName,
+            },
+            where: {
+                userId: requestBody.id,
             },
         });
 
-        return NextResponse.json({ leaderboard: leaderBoard });
+        return NextResponse.json({ leaderboard: leaderboard });
     } catch (error) {
         return NextResponse.json(
             { error: 'Failed to process request' },

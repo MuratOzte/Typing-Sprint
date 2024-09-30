@@ -27,7 +27,7 @@ model User {
 
 model userStats {
     id              String @id @default(auto()) @map("_id") @db.ObjectId
-    userId          String
+    userId          String @unique
     totalTrueWords  Int
     totalFalseWords Int
     totalRun        Int
@@ -37,8 +37,9 @@ model userStats {
 }
 
 model Leaderboard {
-    id       String @id @default(auto()) @map("_id") @db.ObjectId
-    userId   String
+    id       String   @id @default(auto()) @map("_id") @db.ObjectId
+    userName String
+    userId   String   @unique
     wpm      Int
     date     DateTime @default(now())
 }
