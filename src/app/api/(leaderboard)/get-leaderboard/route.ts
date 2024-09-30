@@ -3,10 +3,8 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
     try {
-        const requestBody = await req.json();
-
         const leaderBoard = await prisma.leaderboard.findMany({
             select: {
                 userName: true,

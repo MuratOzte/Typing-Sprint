@@ -31,3 +31,28 @@ export const setLeaderboard = async (
         throw err;
     }
 };
+
+export const getLeaderboard = async () => {
+    try {
+        const response = await fetch(
+            'http://localhost:3000/api/get-leaderboard',
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Getting leaderboard failed');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        console.error('Error during getting leaderboard:', err);
+        throw err;
+    }
+};

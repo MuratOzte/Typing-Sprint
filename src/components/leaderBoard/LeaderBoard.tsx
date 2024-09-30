@@ -1,6 +1,8 @@
-import { FaTrophy } from 'react-icons/fa'; 
+import { FaTrophy } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import { useEffect, useState } from 'react';
+import { getLeaderboard } from '@/libs/leaderboard';
 
 const leaderBoard = [
     {
@@ -47,6 +49,17 @@ const leaderBoard = [
 
 const LeaderBoard = () => {
     const ui = useSelector((state: RootState) => state.ui);
+    const run = useSelector((state: RootState) => state.run);
+    const [Leaderboard, setLeaderboard] = useState(null);
+
+    useEffect(() => {
+        const fetcher = async () => {
+            const response = await getLeaderboard();
+            console.log('aa', response);
+            setLeaderboard(response.leaderboard);
+        };
+        fetcher();
+    }, [run.isFinished]);
 
     return (
         <div className="w-full mx-auto h-screen bg-slate-900 flex items-center flex-col">
@@ -54,30 +67,29 @@ const LeaderBoard = () => {
                 className="text-3xl font-bold text-center text-gray-300 flex justify-center items-center w-fit bg-slate-600 mt-4 p-4 px-6 rounded-md shadow-2xl max-w-64 pl-4"
                 style={{ marginBottom: ui.language == 'en' ? '16px' : 0 }}
             >
-                <FaTrophy
-                    className="text-yellow-500 mr-2 w-16"
-                    size={24}
-                />
+                <FaTrophy className="text-yellow-500 mr-2 w-16" size={24} />
                 {ui.language === 'tr' ? 'Liderlik Tablosu' : 'Leaderboard'}
             </h2>
-            <ol className="list-decimal list-inside p-4 w-full">
-                {leaderBoard.map((leader, index) => (
-                    <li
-                        key={index}
-                        className={`p-3 rounded-lg mb-2 transition-colors duration-300 bg-slate-400 pl-4`}
-                    >
-                        <span className="font-semibold">
-                            {leader.name} - {leader.wps}{' '}
-                        </span>
+            {Leaderboard && (
+                <ol className="list-decimal list-inside p-4 w-full">
+                    {Leaderboard.map((leader, index) => (
+                        <li
+                            key={index}
+                            className={`p-3 rounded-lg mb-2 transition-colors duration-300 bg-slate-400 pl-4`}
+                        >
+                            <span className="font-semibold">
+                                {leader.userName} - {leader.wpm}{' '}
+                            </span>
 
-                        <span className="text-gray-800 text-sm">
-                            {ui.language === 'tr'
-                                ? 'Dakika Başina Kelime'
-                                : 'Words per Minute'}
-                        </span>
-                    </li>
-                ))}
-            </ol>
+                            <span className="text-gray-800 text-sm">
+                                {ui.language === 'tr'
+                                    ? 'Dakika Başina Kelime'
+                                    : 'Words per Minute'}
+                            </span>
+                        </li>
+                    ))}
+                </ol>
+            )}
         </div>
     );
 };
