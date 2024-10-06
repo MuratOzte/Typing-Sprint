@@ -8,6 +8,19 @@ export async function POST(req: NextRequest) {
         const requestBody = await req.json();
         console.log('requestBody:', requestBody);
 
+        const currentLeaderboard = await prisma.leaderboard.findFirst({
+            where: {
+                userId: requestBody.id,
+            },
+        });
+
+        if (currentLeaderboard && currentLeaderboard.wpm > requestBody.wpm) {
+            return NextResponse.json(
+                { leaderboard: currentLeaderboard },
+                { status: 200 }
+            );
+        }
+
         const leaderboard = await prisma.leaderboard.upsert({
             create: {
                 userId: requestBody.id,
