@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { useEffect, useState } from 'react';
 import { getLeaderboard } from '@/libs/leaderboard';
+import Loading from '../common/Loading';
 
 const leaderBoard = [
     {
@@ -50,7 +51,9 @@ const leaderBoard = [
 const LeaderBoard = () => {
     const ui = useSelector((state: RootState) => state.ui);
     const run = useSelector((state: RootState) => state.run);
-    const [Leaderboard, setLeaderboard] = useState(null);
+    const [Leaderboard, setLeaderboard] = useState<
+        { userName: string; wpm: number }[]
+    >([]);
 
     useEffect(() => {
         const fetcher = async () => {
@@ -70,6 +73,9 @@ const LeaderBoard = () => {
                 <FaTrophy className="text-yellow-500 mr-2 w-16" size={24} />
                 {ui.language === 'tr' ? 'Liderlik Tablosu' : 'Leaderboard'}
             </h2>
+            <div className="flex justify-center items-center">
+                {!Leaderboard && <Loading />}
+            </div>
             {Leaderboard && (
                 <ol className="list-decimal list-inside p-4 w-full">
                     {Leaderboard.map((leader, index) => (
