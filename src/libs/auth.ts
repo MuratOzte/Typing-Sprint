@@ -37,6 +37,7 @@ export const register = async (name: string, email: string, password: string) =>
         }
 
         const data = await response.json();
+        login(email, password);
         return data;
     } catch (err) {
         console.error('Error during registration:', err);

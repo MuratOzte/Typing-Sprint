@@ -58,13 +58,16 @@ const useLoginModalHandlers = () => {
             if (isRegistering) {
                 const response = await register(name, username, password);
                 setIsLoading(false);
+                dispatch(uiSlice.actions.setIsLoginModalOpen(false));
+                localStorage.setItem('token', response.user.token);
+                dispatch(userSlice.actions.setUser(response.user));
                 console.log(response);
             } else {
                 const response = await login(username, password);
                 setIsLoading(false);
                 console.log(response);
                 localStorage.setItem('token', response.data.token);
-                dispatch(userSlice.actions.setUser(response.data))
+                dispatch(userSlice.actions.setUser(response.data));
 
                 dispatch(uiSlice.actions.setIsLoginModalOpen(false));
             }
