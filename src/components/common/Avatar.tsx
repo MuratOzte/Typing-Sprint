@@ -8,7 +8,7 @@ const Avatar: React.FC<AvatarProps> = ({
     language,
 }) => {
     return (
-        <div className="flex items-center gap-4 bg-gray-700">
+        <div className="flex items-center gap-4 bg-transparent">
             <img
                 className="w-12 h-12 rounded-full object-cover"
                 src={
@@ -19,7 +19,7 @@ const Avatar: React.FC<AvatarProps> = ({
                 draggable={false}
             />
             <div className="flex flex-col items-start text-center">
-                <div className="text-lg font-semibold text-gray-300 text-center">
+                <div className="text-lg font-semibold text-black text-center">
                     {name}
                 </div>
                 <button

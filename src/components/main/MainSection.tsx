@@ -22,9 +22,9 @@ const MainSection: React.FC<MainSectionProps> = ({
     setWord,
 }) => {
     return (
-        <div className='w-6/12 h-screen overflow-hidden bg-slate-900' >
+        <div className='w-6/12 h-screen overflow-hidden bg-slate-300' >
             <Nav />
-            <div className="flex flex-col gap-10 pt-24 items-center bg-slate-900 h-screen w-full relative">
+            <div className="flex flex-col gap-10 pt-24 items-center bg-slate-300 h-screen w-full relative">
                 <AnimatePresence>
                     {isModalOpen && (
                         <TimerModal
