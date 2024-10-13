@@ -76,7 +76,7 @@ export default function Home() {
                         setWord={setWord}
                     />
                 )}
-                <div className="w-3/12 bg-slate-300">
+                <div className="w-3/12 bg-gray-100">
                     <Gamemodes />
                     <Statistics />
                 </div>

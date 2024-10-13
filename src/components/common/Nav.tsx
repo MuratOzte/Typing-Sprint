@@ -34,7 +34,7 @@ const Nav = () => {
     };
 
     return (
-        <div className="w-full h-20 flex items-center justify-between px-4 mt-4 rounded-md shadow-lg bg-gray-400">
+        <div className="w-full h-20 flex items-center justify-between px-4 mt-4 rounded-md shadow-lg bg-gray-300">
             <div className="flex gap-5 w-1/3 justify-center">
                 <button onClick={() => toggleLanguage('en')}>
                     <img

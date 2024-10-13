@@ -33,7 +33,7 @@ const Statistics = () => {
     
 
     return (
-        <div className="w-full mx-auto bg-slate-300 flex items-center flex-col">
+        <div className="w-full mx-auto bg-gray-100 flex items-center flex-col">
             {isAuth ? (
                 <>
                     <h2 className="text-3xl font-bold text-center text-gray-300 flex justify-center items-center w-fit bg-gray-700 my-2 p-4 px-6 rounded-md shadow-2xl">

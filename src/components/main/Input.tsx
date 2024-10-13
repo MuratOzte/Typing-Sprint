@@ -51,7 +51,7 @@ const Input: React.FC<InputProps> = ({
             autoFocus
             autoComplete="off"
             style={{ backgroundColor: color, border: 'border 2 solid #d1d5db' }}
-            className={`bg-slate-400  my-2 px-5 py-3 rounded-lg focus:outline-none w-1/3 focus:ring-2 focus:ring-gray-400 transition-all duration-150 border-2 ${
+            className={`bg-slate-300  my-2 px-5 py-3 rounded-lg focus:outline-none w-1/3 focus:ring-2 focus:ring-gray-400 transition-all duration-150 border-2 border-gray-400 w-2/5 ${
                 isTrueEffect ? 'border-green-500' : ''
             } ${isFalseEffect ? 'border-red-500' : ''}`}
         />

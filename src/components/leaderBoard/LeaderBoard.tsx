@@ -65,7 +65,7 @@ const LeaderBoard = () => {
     }, [run.isFinished]);
 
     return (
-        <div className="w-full mx-auto h-screen bg-slate-300 flex items-center flex-col">
+        <div className="w-full mx-auto h-screen bg-gray-100 flex items-center flex-col">
             <h2
                 className="text-3xl font-bold text-center text-gray-200 flex justify-center items-center w-fit bg-gray-600 mt-4 p-4 px-6 rounded-md shadow-2xl max-w-64 pl-4"
                 style={{ marginBottom: ui.language == 'en' ? '16px' : 0 }}

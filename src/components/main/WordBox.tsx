@@ -48,7 +48,7 @@ const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
 
     return (
         <>
-            <div className="flex flex-row border-2 px-5 py-2 rounded-xl shadow-xl border-gray-200 justify-center flex-wrap select-none bg-slate-400">
+            <div className="flex flex-row border-2 px-5 py-2 rounded-xl shadow-xl border-gray-200 justify-center flex-wrap select-none bg-gray-400">
                 {words.length == 0 && <Loading />}
                 {words.map((word, index) => (
                     <div
@@ -57,7 +57,7 @@ const WordBox: React.FC<WordboxProps> = ({ setCurrentWord, typedWord }) => {
                         style={{
                             display: index < 5 ? 'block' : 'none',
                             backgroundColor:
-                                index == 0 ? 'GrayText' : 'transparent',
+                                index == 0 ? 'whitesmoke' : 'transparent',
                         }}
                     >
                         {word}
