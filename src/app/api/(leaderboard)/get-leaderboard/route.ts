@@ -17,6 +17,7 @@ export async function GET(req: NextRequest) {
 
         return NextResponse.json({ leaderboard: leaderBoard });
     } catch (error) {
+        console.error('Failed to process request', error);
         return NextResponse.json(
             { error: 'Failed to process request' + error },
             { status: 500 }
