@@ -15,6 +15,7 @@ import { RootState } from '@/store/store';
 import LoginModal from '@/components/modal/LoginModal';
 import userSlice from '@/store/slices/userSlice';
 import uiSlice from '@/store/slices/uiSlice';
+import SmallScreen from '@/components/Error/SmallScreen';
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -45,33 +46,41 @@ export default function Home() {
     }, [run.isFinished]);
 
     return (
-        <div className="w-full flex">
-            <LoginModal />
-            <div className="w-3/12">
-                <LeaderBoard />
+        <>
+            {/* Small screen view */}
+            <div className="block lg:hidden">
+                <SmallScreen />
             </div>
-            {ui.isResultScreen ? (
-                <ResultBox />
-            ) : (
-                <MainSection
-                    falseCount={run.falseCount}
-                    inputColor={inputColor}
-                    isModalOpen={isModalOpen}
-                    isTyped={isTyped}
-                    modalToggleHandler={modalToggleHandler}
-                    setCurrentWord={setCurrentWord}
-                    setTime={setTime}
-                    time={time}
-                    trueCount={run.trueCount}
-                    typedWord={typedWord}
-                    setTypedWord={setTypedWord}
-                    setWord={setWord}
-                />
-            )}
-            <div className="w-3/12 bg-slate-300">
-                <Gamemodes />
-                <Statistics />
+
+            {/* Large screen view */}
+            <div className="hidden lg:flex w-full">
+                <LoginModal />
+                <div className="w-3/12">
+                    <LeaderBoard />
+                </div>
+                {ui.isResultScreen ? (
+                    <ResultBox />
+                ) : (
+                    <MainSection
+                        falseCount={run.falseCount}
+                        inputColor={inputColor}
+                        isModalOpen={isModalOpen}
+                        isTyped={isTyped}
+                        modalToggleHandler={modalToggleHandler}
+                        setCurrentWord={setCurrentWord}
+                        setTime={setTime}
+                        time={time}
+                        trueCount={run.trueCount}
+                        typedWord={typedWord}
+                        setTypedWord={setTypedWord}
+                        setWord={setWord}
+                    />
+                )}
+                <div className="w-3/12 bg-slate-300">
+                    <Gamemodes />
+                    <Statistics />
+                </div>
             </div>
-        </div>
+        </>
     );
 }
